@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Get help with your Suporly account, report an issue, or apply for a badge or role."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Support — Suporly</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/support.css"
+  >
+
+</head>
+
+
+<body data-theme="light">
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="home.html"
+    >
+
+      <img
+        class="brand-logo"
+        src="assets/logos/icon.png"
+        alt="Suporly"
+      >
+
+      <span>
+        Suporly
+      </span>
+
+    </a>
+
+
+    <nav class="site-nav">
+
+      <a href="home.html">
+        Home
+      </a>
+
+      <a href="explore.html">
+        Explore
+      </a>
+
+      <a
+        href="support.html"
+        class="active"
+      >
+        Support
+      </a>
+
+    </nav>
+
+
+    <div class="site-search">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        id="supportSearch"
+        type="search"
+        placeholder="Search..."
+        autocomplete="off"
+        aria-label="Search"
+      >
+
+    </div>
+
+
+    <div class="site-actions">
+
+      <div class="theme-menu">
+
+        <button
+          class="theme-menu-button"
+          id="themeMenuButton"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+
+          <span class="theme-menu-icon">
+            ◐
+          </span>
+
+          <span>
+            Theme
+          </span>
+
+          <span class="theme-menu-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="theme-menu-dropdown"
+          id="themeMenuDropdown"
+        >
+
+          <button
+            class="theme-option"
+            data-theme="light"
+            type="button"
+          >
+            <span>☀</span>
+            <span>Light</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="dark"
+            type="button"
+          >
+            <span>◐</span>
+            <span>Dark</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="suporly"
+            type="button"
+          >
+            <span>✦</span>
+            <span>Suporly</span>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="account-button"
+        href="profile.html"
+      >
+
+        <span>
+          Account
+        </span>
+
+        <img
+          class="profile-icon"
+          id="profileIcon"
+          src="assets/temp/default_pfp.png"
+          alt="Profile"
+        >
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       SUPPORT
+  ====================================================== -->
+
+  <main class="support-main">
+
+
+    <section class="support-heading">
+
+      <span class="section-kicker">
+        SUPORLY SUPPORT
+      </span>
+
+      <h1>
+        How can we help?
+      </h1>
+
+      <p>
+        Choose what you need help with and we'll show you
+        the appropriate form.
+      </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TOPIC SELECTOR
+    ================================================== -->
+
+    <section class="support-panel">
+
+
+      <div class="topic-selector">
+
+        <label for="supportTopic">
+          Topic
+        </label>
+
+        <select
+          id="supportTopic"
+          required
+        >
+
+          <option
+            value=""
+            selected
+            disabled
+          >
+            Select a topic
+          </option>
+
+
+          <optgroup label="General">
+
+            <option value="account_hacked">
+              My account got hacked
+            </option>
+
+            <option value="account_access">
+              I cannot access my account
+            </option>
+
+            <option value="bug_report">
+              Bug Report
+            </option>
+
+            <option value="report_user">
+              Report a User
+            </option>
+
+            <option value="appeal_ban">
+              Appeal a Ban
+            </option>
+
+            <option value="report_moderator">
+              Report a Moderator (MOD)
+            </option>
+
+          </optgroup>
+
+
+          <optgroup label="Applications">
+
+            <option value="verified">
+              Apply for Verified Badge
+            </option>
+
+            <option value="moderator">
+              Apply for MOD + MOD Badge
+            </option>
+
+          </optgroup>
+
+        </select>
+
+      </div>
+
+
+      <p class="topic-help">
+        Select an option to continue.
+      </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+        DYNAMIC FORM
+    ================================================== -->
+
+    <section
+    class="support-form-container"
+    id="supportFormContainer"
+    hidden
+    >
+
+    <div class="support-form-header">
+
+        <span
+        class="support-card-label"
+        id="formLabel"
+        >
+        SUPPORT
+        </span>
+
+        <h2 id="formTitle">
+        Contact Support
+        </h2>
+
+        <p id="formDescription">
+        Tell us what happened and we'll take a look.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+        ACCOUNT INFORMATION
+    ================================================== -->
+
+    <div class="account-information">
+
+        <div class="account-information-item">
+
+        <span class="account-information-label">
+            Username
+        </span>
+
+        <strong id="accountUsername">
+            @Username
+        </strong>
+
+        </div>
+
+
+        <div class="account-information-item">
+
+        <span class="account-information-label">
+            Email
+        </span>
+
+        <strong id="accountEmail">
+            email@example.com
+        </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+        SINGLE FORM
+    ================================================== -->
+
+    <form
+        class="support-form"
+        id="supportForm"
+    >
+
+
+        <!-- =================================================
+            GENERAL CONTENT
+        ================================================== -->
+
+        <div
+        id="generalFields"
+        hidden
+        >
+
+        <div class="form-group">
+
+            <label for="generalExplanation">
+            Explain your issue
+            </label>
+
+            <textarea
+            id="generalExplanation"
+            name="explanation"
+            placeholder="Explain your issue..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="support-warning">
+
+            <strong>
+            Warning
+            </strong>
+
+            <span>
+            Sending spam or intentionally abusive support
+            requests may result in a 6-month ban.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            APPLICATION CONTENT
+        ================================================== -->
+
+        <div
+        id="applicationFields"
+        hidden
+        >
+
+        <div
+            class="application-requirements"
+            id="applicationRequirements"
+        ></div>
+
+
+        <div class="form-group">
+
+            <label for="applicationReason">
+            Why do you want this badge or role?
+            </label>
+
+            <textarea
+            id="applicationReason"
+            name="reason"
+            placeholder="Tell us why you want to receive this badge or role..."
+            ></textarea>
+
+            <span class="form-help">
+            You must provide a valid reason.
+            </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="applicationAbout">
+            Briefly tell us about yourself
+            </label>
+
+            <textarea
+            id="applicationAbout"
+            name="about"
+            placeholder="Tell us a little about yourself..."
+            ></textarea>
+
+        </div>
+
+
+        <!-- VERIFIED ONLY -->
+
+        <div
+            class="conditional-field"
+            id="verifiedSocial"
+        >
+
+            <label for="socialLink">
+
+            Social Media Account
+
+            <span>
+                Optional
+            </span>
+
+            </label>
+
+            <input
+            id="socialLink"
+            name="social"
+            type="url"
+            placeholder="https://..."
+            >
+
+            <span class="form-help">
+            YouTube, TikTok, Instagram or Twitch.
+            </span>
+
+        </div>
+
+
+        <!-- MOD ONLY -->
+
+        <label
+            class="checkbox-row"
+            id="modAgreement"
+            hidden
+        >
+
+            <input
+            type="checkbox"
+            id="modAgreementInput"
+            name="mod_responsibility"
+            >
+
+            <span>
+            I understand that becoming a moderator gives me
+            additional responsibilities and that breaking
+            Suporly's rules may result in stronger moderation
+            action.
+            </span>
+
+        </label>
+
+
+        <!-- APPLICATION AGREEMENTS -->
+
+        <div class="application-agreements">
+
+            <label class="checkbox-row">
+
+            <input
+                type="checkbox"
+                id="requirementsAgreement"
+                name="requirements"
+            >
+
+            <span>
+                I confirm that I meet all required requirements
+                and will continue to follow them in the future.
+            </span>
+
+            </label>
+
+
+            <label class="checkbox-row">
+
+            <input
+                type="checkbox"
+                id="positionAgreement"
+                name="position"
+            >
+
+            <span>
+                I understand and agree to the responsibilities
+                of this badge or role if my application is accepted.
+            </span>
+
+            </label>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            SUBMIT
+        ================================================== -->
+
+        <button
+        class="support-button"
+        id="supportSubmit"
+        type="submit"
+        disabled
+        >
+        Send
+        </button>
+
+
+    </form>
+
+    </section>
+
+
+
+  </main>
+
+
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+
+
+
+  <script src="js/support.js"></script>
+  <script src="js/navigation.js"></script>
+
+</body>
+
+</html>

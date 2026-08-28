@@ -1,0 +1,500 @@
+/* =========================================================
+   SUPORLY — WARNING PROMPT
+========================================================= */
+
+:root {
+
+    --warning-bg:
+        #171105;
+
+    --warning-panel:
+        #241b08;
+
+    --warning-panel-light:
+        #2d220b;
+
+    --warning-border:
+        rgba(245, 158, 11, 0.22);
+
+    --warning-yellow:
+        #f59e0b;
+
+    --warning-yellow-light:
+        #fbbf24;
+
+    --warning-text:
+        #fffaf0;
+
+    --warning-muted:
+        #c9b88f;
+
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.warning-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5, 3, 1, 0.72);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .2s ease,
+        visibility .2s ease;
+
+}
+
+
+.warning-overlay.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.warning-modal {
+
+    position: relative;
+
+    width:
+        min(
+            560px,
+            100%
+        );
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--warning-panel-light),
+            var(--warning-panel)
+        );
+
+    border:
+        1px solid
+        var(--warning-border);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, .55),
+
+        0 0 50px
+        rgba(245, 158, 11, .06);
+
+    transform:
+        translateY(10px)
+        scale(.98);
+
+    transition:
+        transform .2s ease;
+
+}
+
+
+.warning-overlay.visible
+.warning-modal {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.warning-modal-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    margin:
+        0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(245, 158, 11, .10);
+
+    border:
+        1px solid
+        rgba(245, 158, 11, .20);
+
+}
+
+
+.warning-modal-icon img {
+
+    width: 34px;
+
+    height: 34px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.warning-modal-kicker {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    text-align: center;
+
+    color:
+        var(--warning-yellow);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        .16em;
+
+}
+
+
+.warning-modal h2 {
+
+    margin:
+        0 0 24px;
+
+    text-align: center;
+
+    color:
+        var(--warning-text);
+
+    font-size: 27px;
+
+    line-height: 1.15;
+
+    letter-spacing:
+        -.025em;
+
+}
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+.warning-account {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        13px 15px;
+
+    margin-bottom: 24px;
+
+    background:
+        rgba(0, 0, 0, .16);
+
+    border:
+        1px solid
+        rgba(245, 158, 11, .10);
+
+    border-radius: 10px;
+
+}
+
+
+.warning-account span {
+
+    color:
+        var(--warning-muted);
+
+    font-size: 13px;
+
+}
+
+
+.warning-account strong {
+
+    color:
+        var(--warning-text);
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.warning-section {
+
+    margin-bottom: 22px;
+
+}
+
+
+.warning-section p {
+
+    margin: 0;
+
+    color:
+        var(--warning-muted);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   REASON
+========================================================= */
+
+.warning-reason {
+
+    margin-top: 12px;
+
+    padding:
+        14px 16px;
+
+    color:
+        var(--warning-text);
+
+    background:
+        rgba(0, 0, 0, .18);
+
+    border-left:
+        3px solid
+        var(--warning-yellow);
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================================
+   POLICY
+========================================================= */
+
+.warning-policy {
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(245, 158, 11, .10);
+
+}
+
+
+/* =========================================================
+   WHAT DOES WARNING DO
+========================================================= */
+
+.warning-what {
+
+    padding:
+        17px 18px;
+
+    margin-top: 4px;
+
+    margin-bottom: 24px;
+
+    background:
+        rgba(245, 158, 11, .06);
+
+    border:
+        1px solid
+        rgba(245, 158, 11, .13);
+
+    border-radius: 10px;
+
+}
+
+
+.warning-what h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--warning-yellow-light);
+
+    font-size: 14px;
+
+}
+
+
+.warning-what p {
+
+    margin: 0;
+
+    color:
+        var(--warning-muted);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.warning-button {
+
+    width: 100%;
+
+    padding:
+        12px 18px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        var(--warning-yellow);
+
+    color:
+        #211500;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        filter .15s ease;
+
+}
+
+
+.warning-button:hover {
+
+    filter:
+        brightness(1.08);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.warning-button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .warning-overlay {
+
+        padding:
+            12px;
+
+    }
+
+
+    .warning-modal {
+
+        padding:
+            28px 22px;
+
+        border-radius:
+            17px;
+
+    }
+
+
+    .warning-account {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap: 4px;
+
+    }
+
+}

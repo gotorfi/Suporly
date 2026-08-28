@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Suporly — Support request received</title>
+
+</head>
+
+<body style="
+  margin:0;
+  padding:0;
+  background:#f4f5f7;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#111318;
+">
+
+  <table
+    role="presentation"
+    width="100%"
+    cellspacing="0"
+    cellpadding="0"
+    border="0"
+    style="background:#f4f5f7;"
+  >
+
+    <tr>
+
+      <td align="center" style="padding:40px 16px;">
+
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          style="
+            max-width:520px;
+            background:#ffffff;
+            border:1px solid #e5e7eb;
+            border-radius:16px;
+            overflow:hidden;
+          "
+        >
+
+          <!-- HEADER -->
+
+          <tr>
+
+            <td
+              align="center"
+              style="
+                padding:30px 30px 24px;
+                border-bottom:1px solid #e5e7eb;
+              "
+            >
+
+              <img
+                src="https://i.imgur.com/7ED13cn.png"
+                width="46"
+                height="46"
+                alt="Suporly"
+                style="
+                  display:block;
+                  width:46px;
+                  height:46px;
+                  border-radius:11px;
+                  margin-bottom:14px;
+                "
+              >
+
+              <div style="
+                font-size:17px;
+                font-weight:800;
+                letter-spacing:-0.5px;
+                color:#111318;
+              ">
+                Suporly
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- CONTENT -->
+
+          <tr>
+
+            <td style="padding:38px 36px 34px;">
+
+              <div style="
+                font-size:10px;
+                font-weight:800;
+                letter-spacing:2px;
+                color:#7d78ff;
+                text-transform:uppercase;
+                margin-bottom:10px;
+              ">
+                SUPPORT REQUEST
+              </div>
+
+
+              <h1 style="
+                margin:0;
+                font-size:30px;
+                line-height:1.15;
+                letter-spacing:-1px;
+                color:#111318;
+              ">
+                We've received your request
+              </h1>
+
+
+              <p style="
+                margin:14px 0 0;
+                font-size:14px;
+                line-height:1.7;
+                color:#6b7280;
+              ">
+                Thanks for contacting Suporly Support.
+                Your request has been received and will be
+                reviewed by our support team.
+              </p>
+
+
+              <!-- TICKET -->
+
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+                style="
+                  margin-top:28px;
+                  background:#f6f7f9;
+                  border:1px solid #e5e7eb;
+                  border-radius:12px;
+                "
+              >
+
+                <tr>
+
+                  <td style="padding:16px 18px;">
+
+                    <div style="
+                      font-size:10px;
+                      font-weight:800;
+                      letter-spacing:1.5px;
+                      color:#8b929c;
+                      text-transform:uppercase;
+                      margin-bottom:6px;
+                    ">
+                      Ticket Number
+                    </div>
+
+                    <div style="
+                      font-size:20px;
+                      font-weight:800;
+                      color:#111318;
+                      letter-spacing:0.5px;
+                    ">
+                      {{TICKET_NUMBER}}
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+
+              <!-- REQUEST INFORMATION -->
+
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+                style="
+                  margin-top:20px;
+                  border:1px solid #e5e7eb;
+                  border-radius:12px;
+                "
+              >
+
+                <tr>
+
+                  <td style="padding:16px 18px;">
+
+                    <div style="
+                      font-size:11px;
+                      color:#8b929c;
+                      margin-bottom:4px;
+                    ">
+                      Topic
+                    </div>
+
+                    <div style="
+                      font-size:13px;
+                      font-weight:700;
+                      color:#111318;
+                    ">
+                      {{TOPIC}}
+                    </div>
+
+
+                    <div style="
+                      height:14px;
+                    "></div>
+
+
+                    <div style="
+                      font-size:11px;
+                      color:#8b929c;
+                      margin-bottom:4px;
+                    ">
+                      Username
+                    </div>
+
+                    <div style="
+                      font-size:13px;
+                      font-weight:700;
+                      color:#111318;
+                    ">
+                      {{USERNAME}}
+                    </div>
+
+
+                    <div style="
+                      height:14px;
+                    "></div>
+
+
+                    <div style="
+                      font-size:11px;
+                      color:#8b929c;
+                      margin-bottom:4px;
+                    ">
+                      Email
+                    </div>
+
+                    <div style="
+                      font-size:13px;
+                      font-weight:700;
+                      color:#111318;
+                    ">
+                      {{EMAIL}}
+                    </div>
+
+
+                    <div style="
+                      height:14px;
+                    "></div>
+
+
+                    <div style="
+                      font-size:11px;
+                      color:#8b929c;
+                      margin-bottom:4px;
+                    ">
+                      Submitted
+                    </div>
+
+                    <div style="
+                      font-size:13px;
+                      font-weight:700;
+                      color:#111318;
+                    ">
+                      {{DATE}}
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+
+              <!-- MESSAGE -->
+
+              <div style="
+                margin-top:20px;
+                font-size:11px;
+                font-weight:800;
+                letter-spacing:1.5px;
+                color:#8b929c;
+                text-transform:uppercase;
+              ">
+                Your message
+              </div>
+
+
+              <div style="
+                margin-top:8px;
+                padding:16px;
+                background:#fafafa;
+                border:1px solid #eeeeee;
+                border-radius:10px;
+                font-size:13px;
+                line-height:1.7;
+                color:#4b5563;
+                white-space:pre-wrap;
+              ">
+                {{MESSAGE}}
+              </div>
+
+
+              <!-- INFO -->
+
+              <table
+                role="presentation"
+                width="100%"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+                style="
+                  margin-top:20px;
+                  background:#f8f8ff;
+                  border:1px solid #e8e6ff;
+                  border-radius:10px;
+                "
+              >
+
+                <tr>
+
+                  <td style="padding:14px 16px;">
+
+                    <div style="
+                      font-size:11px;
+                      font-weight:700;
+                      color:#111318;
+                      margin-bottom:5px;
+                    ">
+                      What happens next?
+                    </div>
+
+                    <div style="
+                      font-size:11px;
+                      line-height:1.6;
+                      color:#6b7280;
+                    ">
+                      Our support team will review your request.
+                      Please keep your ticket number for reference
+                      if you need to contact us about this request.
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+            </td>
+
+          </tr>
+
+
+          <!-- FOOTER -->
+
+          <tr>
+
+            <td
+              align="center"
+              style="
+                padding:20px 30px;
+                background:#f8f9fa;
+                border-top:1px solid #e5e7eb;
+              "
+            >
+
+              <div style="
+                font-size:10px;
+                color:#8b929c;
+                line-height:1.6;
+              ">
+                This is an automated support email from Suporly.
+              </div>
+
+              <div style="
+                margin-top:6px;
+                font-size:10px;
+                color:#a1a6ad;
+              ">
+                © 2026 Suporly | Made By GotorFI
+              </div>
+
+            </td>
+
+          </tr>
+
+        </table>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</body>
+
+</html>

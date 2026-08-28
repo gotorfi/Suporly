@@ -1,0 +1,835 @@
+/* =========================================================
+   SUPORLY RULES
+========================================================= */
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.rules-main {
+
+    width: min(1100px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 55px 0 90px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.rules-hero {
+
+    max-width: 760px;
+
+    margin-bottom: 55px;
+
+}
+
+
+.rules-kicker {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.rules-hero h1 {
+
+    margin: 0 0 12px;
+
+    font-size: 42px;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+
+}
+
+
+.rules-tagline {
+
+    margin: 0 0 24px;
+
+    color: var(--text-secondary);
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+}
+
+
+.rules-introduction {
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.rules-notice {
+
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 28px;
+
+    padding: 16px 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: var(--surface);
+
+}
+
+
+.rules-notice-icon {
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 7px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 15px;
+
+}
+
+
+.rules-notice strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 14px;
+
+}
+
+
+.rules-notice span:last-child {
+
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.rules-layout {
+
+    display: grid;
+
+    grid-template-columns: 190px minmax(0, 1fr);
+
+    gap: 55px;
+
+    align-items: start;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.rules-sidebar {
+
+    position: sticky;
+
+    top: 25px;
+
+}
+
+
+.rules-sidebar-inner {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.rules-sidebar-title {
+
+    margin: 0 0 10px;
+
+    padding-left: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+}
+
+
+.rules-sidebar a {
+
+    display: block;
+
+    padding: 7px 10px;
+
+    border-radius: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    text-decoration: none;
+
+    transition:
+        background .15s ease,
+        color .15s ease;
+
+}
+
+
+.rules-sidebar a:hover {
+
+    background: var(--surface);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.rules-content {
+
+    min-width: 0;
+
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.rules-section {
+
+    display: grid;
+
+    grid-template-columns: 38px minmax(0, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 48px;
+
+    padding-bottom: 48px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.rules-section:last-child {
+
+    margin-bottom: 0;
+
+    padding-bottom: 0;
+
+    border-bottom: none;
+
+}
+
+
+.rules-section-body {
+
+    min-width: 0;
+
+}
+
+
+.rules-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.rules-section h2 {
+
+    margin: 0 0 17px;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    line-height: 1.25;
+
+    letter-spacing: -.3px;
+
+}
+
+
+.rules-section h3 {
+
+    margin: 28px 0 10px;
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+
+.rules-section p {
+
+    margin: 0 0 16px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+}
+
+
+.rules-section p:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.rules-section strong {
+
+    color: var(--text);
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+.rules-section ul,
+.rules-section ol {
+
+    margin: 12px 0 20px;
+
+    padding-left: 22px;
+
+}
+
+
+.rules-section li {
+
+    margin-bottom: 7px;
+
+    padding-left: 3px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+.rules-section li:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.rules-section li::marker {
+
+    color: var(--primary);
+
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.rules-quote {
+
+    margin: 22px 0;
+
+    padding: 13px 16px;
+
+    border-left: 3px solid var(--primary);
+
+    background: var(--surface);
+
+}
+
+
+.rules-quote strong {
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   DANGER BOX
+========================================================= */
+
+.rules-danger-box {
+
+    margin-top: 24px;
+
+    padding: 16px 18px;
+
+    border: 1px solid #e35d5d;
+
+    border-radius: 7px;
+
+    background: rgba(227, 93, 93, .06);
+
+}
+
+
+.rules-danger-box strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #d94b4b;
+
+    font-size: 14px;
+
+}
+
+
+.rules-danger-box span {
+
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   WARNING BOX
+========================================================= */
+
+.rules-warning-box {
+
+    margin: 25px 0;
+
+    padding: 16px 18px;
+
+    border: 1px solid #d99a32;
+
+    border-radius: 7px;
+
+    background: rgba(217, 154, 50, .06);
+
+}
+
+
+.rules-warning-box > strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #c88720;
+
+    font-size: 14px;
+
+}
+
+
+.rules-warning-box span {
+
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+/* =========================================================
+   MODERATION ACTIONS
+========================================================= */
+
+.rules-action-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin: 22px 0 25px;
+
+}
+
+
+.rules-action-grid span {
+
+    display: block;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    color: var(--text-secondary);
+
+    background: var(--surface);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   BADGE TITLE
+========================================================= */
+
+.rules-title-with-badge {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 17px;
+
+}
+
+
+.rules-title-with-badge h2 {
+
+    margin: 0;
+
+}
+
+
+.rules-title-with-badge img {
+
+    width: 23px;
+
+    height: 23px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   FINAL SECTION
+========================================================= */
+
+.rules-final-section {
+
+    display: block;
+
+    margin-top: 15px;
+
+    padding: 0 0 20px;
+
+}
+
+
+.rules-final-message {
+
+    margin: 20px 0 !important;
+
+    color: var(--text) !important;
+
+    font-size: 17px !important;
+
+    font-weight: 600;
+
+    line-height: 1.6 !important;
+
+}
+
+
+.rules-ending {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.rules-ending strong {
+
+    display: block;
+
+    font-size: 16px;
+
+}
+
+
+.rules-ending span {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .rules-layout {
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+    }
+
+
+    .rules-sidebar {
+
+        position: static;
+
+    }
+
+
+    .rules-sidebar-inner {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 2px;
+
+        padding-bottom: 20px;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+    .rules-sidebar-title {
+
+        grid-column: 1 / -1;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .rules-main {
+
+        width: calc(100% - 28px);
+
+        padding-top: 40px;
+
+        padding-bottom: 60px;
+
+    }
+
+
+    .rules-hero {
+
+        margin-bottom: 40px;
+
+    }
+
+
+    .rules-hero h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .rules-tagline {
+
+        font-size: 17px;
+
+    }
+
+
+    .rules-layout {
+
+        display: block;
+
+    }
+
+
+    .rules-sidebar {
+
+        margin-bottom: 35px;
+
+    }
+
+
+    .rules-sidebar-inner {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .rules-section {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-bottom: 40px;
+
+        padding-bottom: 40px;
+
+    }
+
+
+    .rules-number {
+
+        width: 30px;
+
+        height: 30px;
+
+    }
+
+
+    .rules-section h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .rules-section p {
+
+        font-size: 14px;
+
+    }
+
+
+    .rules-action-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .rules-final-section {
+
+        padding: 22px 18px;
+
+    }
+
+}

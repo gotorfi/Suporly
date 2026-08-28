@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Discover conversations on Suporly."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Home — Suporly</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/home.css"
+  >
+  <link rel="stylesheet" href="css/warning.css">
+
+</head>
+
+<!-- =====================================================
+     WARNING PROMPT
+====================================================== -->
+
+<div
+    id="warningOverlay"
+    class="warning-overlay"
+    aria-hidden="true"
+>
+
+    <div
+        class="warning-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="warningTitle"
+    >
+
+        <!-- ICON -->
+
+        <div class="warning-modal-icon">
+
+            <img
+                src="assets/logos/warned.png"
+                alt=""
+            >
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <span class="warning-modal-kicker">
+            ACCOUNT WARNING
+        </span>
+
+        <h2 id="warningTitle">
+            You have received a warning
+        </h2>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="warning-account">
+
+            <span>
+                Account
+            </span>
+
+            <strong id="warningUsername">
+                @GotorFI
+            </strong>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="warning-section">
+
+            <p>
+
+                You have broken one of our rules and
+                have received a warning on your profile
+                with the following reason:
+
+            </p>
+
+            <div
+                id="warningReason"
+                class="warning-reason"
+            >
+                Example warning reason.
+            </div>
+
+        </div>
+
+
+        <!-- POLICY -->
+
+        <div class="warning-section warning-policy">
+
+            <p>
+
+                Warnings cannot be appealed. If you
+                behave and follow the rules, your warning
+                will be removed after 3 months.
+
+            </p>
+
+        </div>
+
+
+        <!-- WHAT DOES WARNING DO -->
+
+        <div class="warning-what">
+
+            <h3>
+                What does a warning do?
+            </h3>
+
+            <p>
+
+                You can still use Suporly normally.
+                However, while this warning is active,
+                any further rule violation — even a mild
+                one — will result in a 6-month ban or
+                a permanent ban.
+
+            </p>
+
+        </div>
+
+
+        <!-- ACKNOWLEDGE -->
+
+        <button
+            id="warningAcknowledge"
+            class="warning-button"
+            type="button"
+        >
+
+            I understand
+
+        </button>
+
+    </div>
+
+</div>
+
+<body data-theme="light">
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <!-- BRAND -->
+
+    <a
+        class="brand"
+        href="home.html"
+    >
+
+        <img
+        class="brand-logo"
+        src="assets/logos/icon.png"
+        alt="Suporly"
+        >
+
+        <span>Suporly</span>
+
+    </a>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="site-nav">
+
+        <a
+        href="home.html"
+        class="active"
+        >
+        Home
+        </a>
+
+        <a href="explore.html">
+        Explore
+        </a>
+
+        <a href="saved.html">
+        Saved
+        </a>
+
+    </nav>
+
+
+    <!-- SEARCH -->
+
+    <div class="site-search">
+
+        <span class="search-icon">
+        ⌕
+        </span>
+
+        <input
+        id="conversationSearch"
+        type="search"
+        placeholder="Search conversations..."
+        autocomplete="off"
+        aria-label="Search conversations"
+        >
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="site-actions">
+        <!-- =================================================
+        INBOX
+        ================================================== -->
+
+        <a
+            class="inbox-button"
+            href="inbox.html"
+            aria-label="Inbox"
+        >
+
+            <img
+            src="assets/icons/inbox.png"
+            alt=""
+            >
+
+            <span
+            class="inbox-badge"
+            id="inboxBadge"
+            hidden
+            >
+            0
+            </span>
+
+        </a>
+
+        <!-- THEME -->
+
+        <div class="theme-menu">
+
+        <button
+            class="theme-menu-button"
+            id="themeMenuButton"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+
+            <span class="theme-menu-icon">
+            ◐
+            </span>
+
+            <span>
+            Theme
+            </span>
+
+            <span class="theme-menu-arrow">
+            ▾
+            </span>
+
+        </button>
+
+
+        <div
+            class="theme-menu-dropdown"
+            id="themeMenuDropdown"
+        >
+
+            <button
+            class="theme-option"
+            data-theme="light"
+            type="button"
+            >
+
+            <span>☀</span>
+
+            <span>
+                Light
+            </span>
+
+            </button>
+
+
+            <button
+            class="theme-option"
+            data-theme="dark"
+            type="button"
+            >
+
+            <span>◐</span>
+
+            <span>
+                Dark
+            </span>
+
+            </button>
+
+
+            <button
+            class="theme-option"
+            data-theme="suporly"
+            type="button"
+            >
+
+            <span>✦</span>
+
+            <span>
+                Suporly
+            </span>
+
+            </button>
+
+        </div>
+
+        </div>
+
+
+        <!-- ACCOUNT -->
+
+        <a
+        class="account-button"
+        href="profile.html"
+        >
+
+        <span>
+            Account
+        </span>
+
+        <img
+            class="profile-icon"
+            id="profileIcon"
+            src="assets/temp/default_pfp.png"
+            alt="Profile"
+        >
+
+        </a>
+
+    </div>
+
+    </header>
+
+
+
+  <!-- =====================================================
+       HOME
+  ====================================================== -->
+
+  <main class="home-main">
+
+
+    <!-- ===================================================
+         CATEGORY WHEEL
+    ==================================================== -->
+
+    <section class="category-section">
+
+
+      <div class="category-heading">
+
+        <span class="section-kicker">
+          DISCOVER
+        </span>
+
+        <h1>
+          Find something interesting.
+        </h1>
+
+        <p>
+          Pick a category or let Suporly choose one for you.
+        </p>
+
+      </div>
+
+
+      <!-- Wheel viewport -->
+
+      <div
+        class="wheel-viewport"
+        id="wheelViewport"
+      >
+
+        <div
+          class="category-wheel"
+          id="categoryWheel"
+        ></div>
+
+
+        <!-- Center selection indicator -->
+
+        <div class="wheel-selector">
+
+          <div class="selector-line"></div>
+
+          <div
+            class="selected-category"
+            id="selectedCategory"
+          >
+            Games
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Controls -->
+
+      <div class="wheel-controls">
+
+        <button
+          class="random-button"
+          id="randomButton"
+          type="button"
+        >
+
+          <span class="random-icon">
+            ⤨
+          </span>
+
+          Random
+
+        </button>
+
+        <span class="wheel-hint">
+          Drag the wheel
+        </span>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ===================================================
+         POST AREA
+    ==================================================== -->
+
+    <section class="discover-section">
+
+
+      <div class="discover-header">
+
+        <div>
+
+          <span class="section-kicker">
+            <span id="categoryLabel">
+              GAMES
+            </span>
+          </span>
+
+          <h2>
+            Something for you
+          </h2>
+
+        </div>
+
+
+        <button
+          class="next-button"
+          id="nextButton"
+          type="button"
+        >
+
+          Next
+
+          <span>
+            →
+          </span>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- =================================================
+           POST
+      ================================================== -->
+
+      <article
+        class="discover-post"
+        id="discoverPost"
+      >
+
+        <div class="post-meta">
+
+          <div class="post-author">
+
+            <div class="author-avatar">
+              S
+            </div>
+
+            <div>
+
+              <strong id="postAuthor">
+                GotorFI
+              </strong>
+
+              <span id="postTime">
+                2 hours ago
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span
+            class="post-category"
+            id="postCategory"
+          >
+            Games
+          </span>
+
+        </div>
+
+
+        <div class="post-content">
+
+          <h3 id="postTitle">
+            What game have you been playing lately?
+          </h3>
+
+          <p id="postText">
+            I've been looking for something new to play.
+            What games have you been enjoying recently?
+          </p>
+
+        </div>
+
+
+        <div class="post-stats">
+
+            <span id="postLikes">
+                ♡ 24
+            </span>
+
+            <span id="postCommentCount">
+                ○ 8 comments
+            </span>
+
+            <button
+                class="post-save-button"
+                id="postSaveButton"
+                type="button"
+                aria-label="Save post"
+            >
+                Save
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             COMMENTS
+        ================================================== -->
+
+        <div class="comments-section">
+
+          <div class="comments-heading">
+
+            <strong>
+              Comments
+            </strong>
+
+            <span id="commentCount">
+              8
+            </span>
+
+          </div>
+
+
+          <div
+            class="comments-list"
+            id="commentsList"
+          ></div>
+
+
+          <!-- Comment form -->
+
+          <form
+            class="comment-form"
+            id="commentForm"
+          >
+
+            <div class="comment-avatar">
+              S
+            </div>
+
+
+            <input
+              id="commentInput"
+              type="text"
+              placeholder="Write a comment..."
+              maxlength="500"
+              autocomplete="off"
+            >
+
+
+            <button
+              type="submit"
+            >
+              Post
+            </button>
+
+          </form>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- =================================================
+           EMPTY STATE
+      ================================================== -->
+
+      <div
+        class="clean-state"
+        id="cleanState"
+        hidden
+      >
+
+        <div class="clean-icon">
+          ✓
+        </div>
+
+        <h3>
+          You cleaned your page.
+        </h3>
+
+        <p>
+          You have cleaned your page, congrats!
+          Come here back later to get new posts!
+        </p>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+
+
+
+    <!-- =================================================
+        COPYRIGHT
+    ================================================== -->
+
+    <div class="site-footer-bottom">
+
+        <span>
+        © 2026 Suporly. All rights reserved.
+        </span>
+
+        <span>
+        Built by <strong>GotorFI</strong>
+        </span>
+
+    </div>
+
+
+    </footer>
+
+
+  <script src="js/home.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/warning.js"></script>
+
+</body>
+
+</html>

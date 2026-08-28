@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Create a Suporly account."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Create account — Suporly</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-theme="light">
+
+  <div class="auth-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="auth-header">
+
+      <a class="brand" href="index.html">
+
+        <img
+          class="brand-logo"
+          src="assets/logos/icon.png"
+          alt="Suporly"
+        >
+
+        <span>Suporly</span>
+
+      </a>
+
+
+      <div class="theme-switcher">
+
+        <button
+          class="theme-btn active"
+          data-theme="light"
+          type="button"
+        >
+          Light
+        </button>
+
+        <button
+          class="theme-btn"
+          data-theme="dark"
+          type="button"
+        >
+          Dark
+        </button>
+
+        <button
+          class="theme-btn"
+          data-theme="suporly"
+          type="button"
+        >
+          Suporly
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="auth-main">
+
+      <section class="auth-card signup-card">
+
+
+        <!-- =================================================
+             SIGNUP STEP
+        ================================================== -->
+
+        <div id="signupStep">
+
+          <div class="auth-logo">
+
+            <img
+              src="assets/logos/icon_nobg.png"
+              alt="Suporly"
+            >
+
+          </div>
+
+
+          <div class="auth-heading">
+
+            <span class="section-kicker">
+              JOIN SUPORLY
+            </span>
+
+            <h1>
+              Create account
+            </h1>
+
+            <p>
+              Create your account and join the community.
+            </p>
+
+          </div>
+
+
+          <form id="signupForm">
+
+            <!-- Username -->
+
+            <div class="form-field">
+
+              <label for="username">
+                Username
+              </label>
+
+              <input
+                id="username"
+                name="username"
+                type="text"
+                autocomplete="username"
+                placeholder="Choose a username"
+                minlength="3"
+                maxlength="30"
+                required
+              >
+
+              <span class="field-help">
+                3–30 characters.
+              </span>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="form-field">
+
+              <label for="signupEmail">
+                Email
+              </label>
+
+              <input
+                id="signupEmail"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-field">
+
+              <label for="signupPassword">
+                Password
+              </label>
+
+              <input
+                id="signupPassword"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Create a password"
+                minlength="8"
+                required
+              >
+
+              <span class="field-help">
+                At least 8 characters.
+              </span>
+
+            </div>
+
+
+            <!-- Confirm password -->
+
+            <div class="form-field">
+
+              <label for="confirmPassword">
+                Confirm password
+              </label>
+
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Enter your password again"
+                minlength="8"
+                required
+              >
+
+            </div>
+
+
+            <!-- Terms -->
+
+            <label class="terms">
+
+              <input
+                type="checkbox"
+                id="terms"
+                required
+              >
+
+              <span>
+                I agree to the
+                <a href="index.html#guidelines">
+                  Suporly guidelines
+                </a>.
+              </span>
+
+            </label>
+
+
+            <!-- Submit -->
+
+            <button
+              class="auth-submit"
+              id="signupSubmit"
+              type="submit"
+            >
+              Create account
+            </button>
+
+
+            <!-- Message -->
+
+            <div
+            class="auth-message"
+            id="signupMessage"
+            role="alert"
+            ></div>
+
+          </form>
+
+
+          <div class="auth-divider">
+            <span>or</span>
+          </div>
+
+
+          <p class="auth-switch">
+
+            Already have an account?
+
+            <a href="login.html">
+              Sign in
+            </a>
+
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             ACTIVATION STEP
+        ================================================== -->
+
+        <div id="activationStep" class="activation-step" hidden>
+
+        <div class="auth-logo">
+
+            <img
+            src="assets/logos/icon_nobg.png"
+            alt="Suporly"
+            >
+
+        </div>
+
+
+        <div class="auth-heading">
+
+            <span class="section-kicker">
+            CHECK YOUR EMAIL
+            </span>
+
+            <h1>
+            Activate your account
+            </h1>
+
+            <p>
+            We've sent a 6-digit activation code to
+            <strong id="activationEmail">your email</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- CODE -->
+
+        <div class="verification-section">
+
+            <label class="verification-label">
+            Activation code
+            </label>
+
+            <div
+            class="verification-code"
+            id="activationCode"
+            aria-label="6-digit activation code"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                autocomplete="one-time-code"
+                aria-label="Activation code digit 1"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                aria-label="Activation code digit 2"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                aria-label="Activation code digit 3"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                aria-label="Activation code digit 4"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                aria-label="Activation code digit 5"
+            >
+
+            <input
+                class="code-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                aria-label="Activation code digit 6"
+            >
+
+            </div>
+
+            <p class="verification-note">
+            Enter the 6-digit code from your email.
+            The code expires after <strong>10 minutes</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            class="auth-message"
+            id="activationMessage"
+            role="alert"
+        ></div>
+
+
+        <!-- ACTIVATE -->
+
+        <button
+            class="auth-submit"
+            id="activateAccount"
+            type="button"
+        >
+            Activate account
+        </button>
+
+
+        <!-- OPTIONS -->
+
+        <div class="activation-options">
+
+            <button
+            type="button"
+            class="auth-text-button"
+            id="renewCode"
+            >
+            Didn't receive the code?
+            <strong>Renew code</strong>
+            </button>
+
+            <button
+            type="button"
+            class="auth-text-button"
+            id="changeEmail"
+            >
+            Use a different email
+            </button>
+
+        </div>
+
+
+      </section>
+
+    </main>
+
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+
+  </div>
+  <!-- =================================================
+        COPYRIGHT
+    ================================================== -->
+
+    <div class="site-footer-bottom">
+
+        <span>
+        © 2026 Suporly. All rights reserved.
+        </span>
+
+        <span>
+        Built by <strong>GotorFI</strong>
+        </span>
+
+    </div>
+
+
+    </footer>
+
+
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

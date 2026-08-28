@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Your notifications on Suporly."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Inbox — Suporly</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/inbox.css"
+  >
+
+</head>
+
+
+<body data-theme="light">
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="home.html"
+    >
+
+      <img
+        class="brand-logo"
+        src="assets/logos/icon.png"
+        alt="Suporly"
+      >
+
+      <span>Suporly</span>
+
+    </a>
+
+
+    <nav class="site-nav">
+
+      <a href="home.html">
+        Home
+      </a>
+
+      <a href="explore.html">
+        Explore
+      </a>
+
+      <a href="saved.html">
+        Saved
+      </a>
+
+    </nav>
+
+
+    <div class="site-search">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        id="conversationSearch"
+        type="search"
+        placeholder="Search..."
+        autocomplete="off"
+        aria-label="Search"
+      >
+
+    </div>
+
+
+    <div class="site-actions">
+
+
+      <!-- =================================================
+           INBOX
+      ================================================== -->
+
+      <a
+        class="inbox-button"
+        href="inbox.html"
+        aria-label="Inbox"
+      >
+
+        <img
+          src="assets/icons/inbox.png"
+          alt=""
+        >
+
+        <span
+          class="inbox-badge"
+          id="inboxBadge"
+          hidden
+        >
+          0
+        </span>
+
+      </a>
+
+
+
+      <!-- =================================================
+           THEME
+      ================================================== -->
+
+      <div class="theme-menu">
+
+        <button
+          class="theme-menu-button"
+          id="themeMenuButton"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+
+          <span class="theme-menu-icon">
+            ◐
+          </span>
+
+          <span>
+            Theme
+          </span>
+
+          <span class="theme-menu-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="theme-menu-dropdown"
+          id="themeMenuDropdown"
+        >
+
+          <button
+            class="theme-option"
+            data-theme="light"
+            type="button"
+          >
+            <span>☀</span>
+            <span>Light</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="dark"
+            type="button"
+          >
+            <span>◐</span>
+            <span>Dark</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="suporly"
+            type="button"
+          >
+            <span>✦</span>
+            <span>Suporly</span>
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           ACCOUNT
+      ================================================== -->
+
+      <a
+        class="account-button"
+        href="profile.html"
+      >
+
+        <span>
+          Account
+        </span>
+
+        <img
+          class="profile-icon"
+          id="profileIcon"
+          src="assets/temp/default_pfp.png"
+          alt="Profile"
+        >
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       INBOX
+  ====================================================== -->
+
+  <main class="inbox-main">
+
+
+    <section class="inbox-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          YOUR ACTIVITY
+        </span>
+
+        <h1>
+          Inbox
+        </h1>
+
+        <p>
+          Updates, comments and other notifications from Suporly.
+        </p>
+
+      </div>
+
+
+      <button
+        class="inbox-read-button"
+        id="markAllRead"
+        type="button"
+      >
+        Mark all as Read
+      </button>
+
+    </section>
+
+
+
+    <!-- =================================================
+         NOTIFICATIONS
+    ================================================== -->
+
+    <section
+      class="inbox-list"
+      id="inboxList"
+    ></section>
+
+    <!-- =================================================
+     PAGINATION
+    ================================================== -->
+
+    <nav
+    class="inbox-pagination"
+    id="inboxPagination"
+    aria-label="Inbox pages"
+    ></nav>
+
+
+
+    <!-- =================================================
+         EMPTY STATE
+    ================================================== -->
+
+    <section
+      class="inbox-empty"
+      id="inboxEmpty"
+      hidden
+    >
+
+      <div class="inbox-empty-icon">
+        ✓
+      </div>
+
+      <h2>
+        You're all caught up.
+      </h2>
+
+      <p>
+        New notifications will appear here.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+      <div class="footer-brand">
+
+        <img
+          src="assets/logos/icon.png"
+          alt="Suporly"
+          class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+          <strong>
+            Suporly
+          </strong>
+
+          <span>
+            A friendly community built around helping people.
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <nav class="footer-nav">
+
+        <a href="index.html">
+          Front-Page
+        </a>
+
+        <a href="rules.html">
+          Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+          Support
+        </a>
+
+      </nav>
+
+
+    </div>
+
+
+
+    <div class="site-footer-bottom">
+
+      <span>
+        © 2026 Suporly. All rights reserved.
+      </span>
+
+      <span>
+        Built by <strong>GotorFI</strong>
+      </span>
+
+    </div>
+
+
+  </footer>
+
+
+  <script src="js/inbox.js"></script>
+  <script src="js/navigation.js"></script>
+
+</body>
+
+</html>

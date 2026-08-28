@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Sign in to Suporly."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Sign in — Suporly</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body data-theme="light">
+
+  <div class="auth-page">
+
+    <!-- HEADER -->
+
+    <header class="auth-header">
+
+      <a class="brand" href="index.html">
+
+        <img
+          class="brand-logo"
+          src="assets/logos/icon.png"
+          alt="Suporly"
+        >
+
+        <span>Suporly</span>
+
+      </a>
+
+
+      <div class="theme-switcher">
+
+        <button
+          class="theme-btn active"
+          data-theme="light"
+        >
+          Light
+        </button>
+
+        <button
+          class="theme-btn"
+          data-theme="dark"
+        >
+          Dark
+        </button>
+
+        <button
+          class="theme-btn"
+          data-theme="suporly"
+        >
+          Suporly
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="auth-main">
+
+      <section class="auth-card">
+
+
+        <!-- =========================================
+             LOGIN
+        ========================================== -->
+
+        <div id="loginStep">
+
+          <div class="auth-logo">
+
+            <img
+              src="assets/logos/icon_nobg.png"
+              alt="Suporly"
+            >
+
+          </div>
+
+
+          <div class="auth-heading">
+
+            <span class="section-kicker">
+              WELCOME BACK
+            </span>
+
+            <h1>Sign in</h1>
+
+            <p>
+              Sign in to continue to Suporly.
+            </p>
+
+          </div>
+
+
+          <form id="loginForm">
+
+
+            <!-- EMAIL -->
+
+            <div class="form-field">
+
+              <label for="email">
+                Email
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-field">
+
+              <div class="field-label">
+
+                <label for="password">
+                  Password
+                </label>
+
+                <a
+                  href="#"
+                  class="forgot-link"
+                >
+                  Forgot password?
+                </a>
+
+              </div>
+
+
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Your password"
+                required
+              >
+
+            </div>
+
+
+            <!-- REMEMBER -->
+
+            <label class="remember">
+
+              <input
+                type="checkbox"
+                id="remember"
+              >
+
+              <span>
+                Remember me
+              </span>
+
+            </label>
+
+
+            <!-- SUBMIT -->
+
+            <button
+              class="auth-submit"
+              type="submit"
+            >
+              Sign in
+            </button>
+
+
+            <div
+              class="auth-message"
+              id="authMessage"
+              role="alert"
+            ></div>
+
+          </form>
+
+
+          <div class="auth-divider">
+            <span>or</span>
+          </div>
+
+
+          <p class="auth-switch">
+
+            Don't have an account?
+
+            <a href="signup.html">
+              Create one
+            </a>
+
+          </p>
+
+        </div>
+
+
+
+        <!-- =========================================
+             CONFIRMATION CODE
+        ========================================== -->
+
+        <div
+          id="verificationStep"
+          class="verification-step hidden"
+        >
+
+          <div class="auth-logo">
+
+            <img
+              src="assets/logos/icon_nobg.png"
+              alt="Suporly"
+            >
+
+          </div>
+
+
+          <div class="auth-heading">
+
+            <span class="section-kicker">
+              VERIFICATION
+            </span>
+
+            <h1>Check your email</h1>
+
+            <p>
+              We sent a 6-digit confirmation code to
+              <strong id="verificationEmail">
+                your email
+              </strong>.
+            </p>
+
+          </div>
+
+
+          <!-- CODE -->
+
+          <div class="verification-code">
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              autocomplete="one-time-code"
+              aria-label="Digit 1"
+            >
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              aria-label="Digit 2"
+            >
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              aria-label="Digit 3"
+            >
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              aria-label="Digit 4"
+            >
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              aria-label="Digit 5"
+            >
+
+            <input
+              class="code-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              aria-label="Digit 6"
+            >
+
+          </div>
+
+
+          <p class="verification-hint">
+            Enter the code from your email.
+          </p>
+
+
+          <!-- VERIFY -->
+
+          <button
+            class="auth-submit"
+            id="verifyCode"
+            type="button"
+          >
+            Verify code
+          </button>
+
+
+          <div
+            class="auth-message"
+            id="verificationMessage"
+            role="alert"
+          ></div>
+
+
+          <!-- RENEW -->
+
+          <div class="renew-code">
+
+            <span>
+                Didn't receive the code?
+            </span>
+
+            <button
+                type="button"
+                id="renewCode"
+            >
+                Renew code
+            </button>
+
+          </div>
+
+
+          <!-- BACK -->
+
+        <button
+            type="button"
+            class="back-button"
+            id="backToLogin"
+        >
+            ← Back to sign in
+        </button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+<!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+
+  </div>
+  <!-- =================================================
+        COPYRIGHT
+    ================================================== -->
+
+    <div class="site-footer-bottom">
+
+        <span>
+        © 2026 Suporly. All rights reserved.
+        </span>
+
+        <span>
+        Built by <strong>GotorFI</strong>
+        </span>
+
+    </div>
+
+
+    </footer>
+
+  </div>
+
+
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

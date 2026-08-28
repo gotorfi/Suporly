@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Explore conversations on Suporly."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Explore — Suporly</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/explore.css"
+  >
+
+</head>
+
+
+<body data-theme="light">
+
+
+<div class="explore-page">
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a
+        class="brand"
+        href="home.html"
+    >
+
+        <img
+        class="brand-logo"
+        src="assets/logos/icon.png"
+        alt="Suporly"
+        >
+
+        <span>Suporly</span>
+
+    </a>
+
+
+    <nav class="site-nav">
+
+        <a href="home.html">
+        Home
+        </a>
+
+        <a
+        href="explore.html"
+        class="active"
+        >
+        Explore
+        </a>
+
+        <a href="saved.html">
+        Saved
+        </a>
+
+    </nav>
+
+
+    <div class="site-search">
+
+        <span class="search-icon">
+        ⌕
+        </span>
+
+        <input
+        id="conversationSearch"
+        type="search"
+        placeholder="Search conversations..."
+        autocomplete="off"
+        aria-label="Search conversations"
+        >
+
+    </div>
+
+
+    <div class="site-actions">
+
+        <!-- =================================================
+        INBOX
+        ================================================== -->
+
+        <a
+            class="inbox-button"
+            href="inbox.html"
+            aria-label="Inbox"
+        >
+
+            <img
+            src="assets/icons/inbox.png"
+            alt=""
+            >
+
+            <span
+            class="inbox-badge"
+            id="inboxBadge"
+            hidden
+            >
+            0
+            </span>
+
+        </a>
+
+
+        <div class="theme-menu">
+
+        <button
+            class="theme-menu-button"
+            id="themeMenuButton"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+
+            <span class="theme-menu-icon">
+            ◐
+            </span>
+
+            <span>
+            Theme
+            </span>
+
+            <span class="theme-menu-arrow">
+            ▾
+            </span>
+
+        </button>
+
+
+        <div
+            class="theme-menu-dropdown"
+            id="themeMenuDropdown"
+        >
+
+            <button
+            class="theme-option"
+            data-theme="light"
+            type="button"
+            >
+            <span>☀</span>
+            <span>Light</span>
+            </button>
+
+            <button
+            class="theme-option"
+            data-theme="dark"
+            type="button"
+            >
+            <span>◐</span>
+            <span>Dark</span>
+            </button>
+
+            <button
+            class="theme-option"
+            data-theme="suporly"
+            type="button"
+            >
+            <span>✦</span>
+            <span>Suporly</span>
+            </button>
+
+        </div>
+
+        </div>
+
+
+        <a
+        class="account-button"
+        href="profile.html"
+        >
+
+        <span>
+            Account
+        </span>
+
+        <img
+            class="profile-icon"
+            id="profileIcon"
+            src="assets/temp/default_pfp.png"
+            alt="Profile"
+        >
+
+        </a>
+
+    </div>
+
+    </header>
+
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main class="explore-main">
+
+
+    <!-- ===================================================
+         CATEGORY SELECTOR
+    ==================================================== -->
+
+    <section class="explore-category">
+
+      <div class="explore-category-heading">
+
+        <span class="section-kicker">
+          EXPLORE
+        </span>
+
+        <h1>
+          Find a conversation
+        </h1>
+
+        <p>
+          Explore ideas, questions and discussions from the community.
+        </p>
+
+      </div>
+
+
+      <div
+        class="explore-wheel-viewport"
+        id="exploreWheelViewport"
+      >
+
+        <div
+          class="explore-wheel"
+          id="exploreWheel"
+        ></div>
+
+      </div>
+
+
+      <div class="explore-selected">
+
+        <span class="explore-selected-line"></span>
+
+        <strong id="exploreCategoryLabel">
+          Games
+        </strong>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         DISCOVERY CONTROLS
+    ==================================================== -->
+
+    <section class="discovery-section">
+
+
+      <div class="discovery-top">
+
+        <div>
+
+          <span class="section-kicker">
+            DISCOVERY MODE
+          </span>
+
+          <h2 id="discoveryHeading">
+            Games
+          </h2>
+
+        </div>
+
+
+        <div class="discovery-tabs">
+
+          <button
+            class="discovery-tab active"
+            data-mode="new"
+            type="button"
+          >
+            New
+          </button>
+
+          <button
+            class="discovery-tab"
+            data-mode="top"
+            type="button"
+          >
+            Top
+          </button>
+
+          <button
+            class="discovery-tab"
+            data-mode="rediscovered"
+            type="button"
+          >
+            Rediscovered
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           DISCOVERY AREA
+      ================================================== -->
+
+      <div
+        class="discovery-stage"
+        id="discoveryStage"
+      >
+
+
+        <button
+          class="discovery-arrow discovery-prev"
+          id="previousPost"
+          type="button"
+          aria-label="Previous conversation"
+        >
+          ←
+        </button>
+
+
+        <div
+          class="discovery-track"
+          id="discoveryTrack"
+        ></div>
+
+
+        <button
+          class="discovery-arrow discovery-next"
+          id="nextPost"
+          type="button"
+          aria-label="Next conversation"
+        >
+          →
+        </button>
+
+      </div>
+
+
+
+      <!-- =================================================
+           POSITION
+      ================================================== -->
+
+      <div
+        class="discovery-position"
+        id="discoveryPosition"
+      ></div>
+
+
+
+      <!-- =================================================
+           CONTRIBUTOR
+      ================================================== -->
+
+      <div
+        class="contributor-panel"
+        id="contributorPanel"
+      >
+
+        <div class="contributor-avatar">
+          ?
+        </div>
+
+
+        <div class="contributor-info">
+
+          <span class="contributor-label">
+            CONVERSATION BY
+          </span>
+
+          <strong id="contributorName">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="contributor-stats">
+
+          <div>
+
+            <span>
+              Reputation
+            </span>
+
+            <strong id="contributorReputation">
+              —
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Helpful
+            </span>
+
+            <strong id="contributorHelpful">
+              —
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="open-conversation"
+          id="openConversation"
+          type="button"
+        >
+          Open conversation
+          <span>→</span>
+        </button>
+
+      </div>
+
+
+
+      <!-- =================================================
+           CONVERSATION TRAIL
+      ================================================== -->
+
+      <section class="conversation-trail">
+
+        <div class="trail-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              CONVERSATION TRAIL
+            </span>
+
+            <h3>
+              Where this conversation leads
+            </h3>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="trail-network"
+          id="trailNetwork"
+        ></div>
+
+      </section>
+
+
+    </section>
+
+
+  </main>
+
+
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+    <!-- =================================================
+        COPYRIGHT
+    ================================================== -->
+
+    <div class="site-footer-bottom">
+
+        <span>
+        © 2026 Suporly. All rights reserved.
+        </span>
+
+        <span>
+        Built by <strong>GotorFI</strong>
+        </span>
+
+    </div>
+
+
+    </footer>
+
+
+</div>
+
+
+<script src="js/explore.js"></script>
+<script src="js/navigation.js"></script>
+
+</body>
+
+</html>

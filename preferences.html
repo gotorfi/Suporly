@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Manage your Suporly account preferences."
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/logos/icon_large_nobg.png"
+  >
+
+  <title>Preferences — Suporly</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/preferences.css"
+  >
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+</head>
+
+
+<body data-theme="light">
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="home.html"
+    >
+
+      <img
+        class="brand-logo"
+        src="assets/logos/icon.png"
+        alt="Suporly"
+      >
+
+      <span>
+        Suporly
+      </span>
+
+    </a>
+
+
+    <nav class="site-nav">
+
+      <a href="home.html">
+        Home
+      </a>
+
+      <a href="explore.html">
+        Explore
+      </a>
+
+      <a href="saved.html">
+        Saved
+      </a>
+
+    </nav>
+
+
+    <div class="site-search">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        id="conversationSearch"
+        type="search"
+        placeholder="Search conversations..."
+        autocomplete="off"
+        aria-label="Search conversations"
+      >
+
+    </div>
+
+
+    <div class="site-actions">
+
+
+      <!-- THEME -->
+
+      <div class="theme-menu">
+
+        <button
+          class="theme-menu-button"
+          id="themeMenuButton"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+
+          <span class="theme-menu-icon">
+            ◐
+          </span>
+
+          <span>
+            Theme
+          </span>
+
+          <span class="theme-menu-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="theme-menu-dropdown"
+          id="themeMenuDropdown"
+        >
+
+          <button
+            class="theme-option"
+            data-theme="light"
+            type="button"
+          >
+            <span>☀</span>
+            <span>Light</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="dark"
+            type="button"
+          >
+            <span>◐</span>
+            <span>Dark</span>
+          </button>
+
+
+          <button
+            class="theme-option"
+            data-theme="suporly"
+            type="button"
+          >
+            <span>✦</span>
+            <span>Suporly</span>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACCOUNT -->
+
+      <a
+        class="account-button active"
+        href="profile.html"
+      >
+
+        <span>
+          Account
+        </span>
+
+        <img
+          class="profile-icon"
+          id="profileIcon"
+          src="assets/temp/default_pfp.png"
+          alt="Profile"
+        >
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       PREFERENCES
+  ====================================================== -->
+
+  <main class="preferences-main">
+
+
+    <div class="preferences-heading">
+
+      <span class="section-kicker">
+        ACCOUNT
+      </span>
+
+      <h1>
+        Preferences
+      </h1>
+
+      <p>
+        Manage your profile, account and privacy settings.
+      </p>
+
+    </div>
+
+
+
+    <div class="preferences-layout">
+
+
+      <!-- =================================================
+           SIDEBAR
+      ================================================== -->
+
+      <aside class="preferences-nav">
+
+        <button
+          class="preferences-nav-item active"
+          data-section="general"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ◉
+          </span>
+
+          <span>
+            General
+          </span>
+
+        </button>
+
+
+        <button
+          class="preferences-nav-item"
+          data-section="security"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ◇
+          </span>
+
+          <span>
+            Security
+          </span>
+
+        </button>
+
+
+        <button
+          class="preferences-nav-item"
+          data-section="logins"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ↗
+          </span>
+
+          <span>
+            Logins
+          </span>
+
+        </button>
+
+
+        <button
+          class="preferences-nav-item"
+          data-section="notifications"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ♢
+          </span>
+
+          <span>
+            Notifications
+          </span>
+
+        </button>
+
+
+        <button
+          class="preferences-nav-item"
+          data-section="privacy"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ◌
+          </span>
+
+          <span>
+            Privacy
+          </span>
+
+        </button>
+
+
+        <div class="preferences-nav-divider"></div>
+
+
+        <button
+          class="preferences-nav-item danger"
+          data-section="delete"
+          type="button"
+        >
+
+          <span class="preferences-nav-icon">
+            ×
+          </span>
+
+          <span>
+            Delete account
+          </span>
+
+        </button>
+
+      </aside>
+
+
+
+      <!-- =================================================
+           CONTENT
+      ================================================== -->
+
+      <div class="preferences-content">
+
+
+        <!-- =================================================
+             GENERAL
+        ================================================== -->
+
+        <section
+          class="preference-section active"
+          id="section-general"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker">
+              GENERAL
+            </span>
+
+            <h2>
+              Profile
+            </h2>
+
+            <p>
+              Customize how your profile appears to other people.
+            </p>
+
+          </div>
+
+
+          <!-- BANNER -->
+
+          <div class="preference-card">
+
+            <div class="preference-card-header">
+
+              <div>
+
+                <h3>
+                  Profile banner
+                </h3>
+
+                <p>
+                  This image appears at the top of your profile.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="banner-preview">
+
+              <img
+                id="bannerPreview"
+                src="assets/temp/default_banner.png"
+                alt="Profile banner"
+              >
+
+            </div>
+
+
+            <div class="image-actions">
+
+              <button
+                class="preference-button secondary"
+                id="changeBannerButton"
+                type="button"
+              >
+                Change banner
+              </button>
+
+              <button
+                class="text-button danger-text"
+                id="removeBannerButton"
+                type="button"
+              >
+                Remove
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- AVATAR -->
+
+          <div class="preference-card">
+
+            <div class="preference-card-header">
+
+              <div>
+
+                <h3>
+                  Profile picture
+                </h3>
+
+                <p>
+                  Choose the image shown next to your name.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="avatar-setting">
+
+              <img
+                id="preferencesAvatar"
+                class="preferences-avatar"
+                src="assets/temp/default_pfp.png"
+                alt="Profile picture"
+              >
+
+
+              <div>
+
+                <button
+                  class="preference-button secondary"
+                  id="changeAvatarButton"
+                  type="button"
+                >
+                  Change picture
+                </button>
+
+                <p class="setting-hint">
+                  PNG, JPG or WebP.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- NAME -->
+
+          <div class="preference-card">
+
+            <div class="preference-card-header">
+
+              <div>
+
+                <h3>
+                  Name
+                </h3>
+
+                <p>
+                  These names are displayed on your profile.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="displayName">
+                Display name
+              </label>
+
+              <input
+                id="displayName"
+                type="text"
+                maxlength="50"
+                autocomplete="name"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="username">
+                Username
+              </label>
+
+              <div class="input-prefix">
+                <span>@</span>
+
+                <input
+                  id="username"
+                  type="text"
+                  maxlength="30"
+                  autocomplete="username"
+                >
+
+              </div>
+
+              <span class="setting-hint">
+                Your username is used for your profile URL.
+              </span>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bio">
+                Bio
+              </label>
+
+              <textarea
+                id="bio"
+                maxlength="300"
+                rows="4"
+              ></textarea>
+
+            </div>
+
+
+            <button
+              class="preference-button primary"
+              id="saveProfileButton"
+              type="button"
+            >
+              Save changes
+            </button>
+
+          </div>
+
+
+
+          <!-- REGIONAL -->
+
+          <div class="preference-card">
+
+            <div class="preference-card-header">
+
+              <div>
+
+                <h3>
+                  Regional
+                </h3>
+
+                <p>
+                  Control how dates and times are displayed.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+              <div class="form-group">
+
+                <label for="language">
+                  Language
+                </label>
+
+                <select id="language">
+
+                  <option value="en">
+                    English
+                  </option>
+
+                  <option value="fi">
+                    Finnish
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="timezone">
+                  Time zone
+                </label>
+
+                <select id="timezone">
+
+                  <option value="Europe/Helsinki">
+                    Europe/Helsinki
+                  </option>
+
+                  <option value="UTC">
+                    UTC
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECURITY
+        ================================================== -->
+
+        <section
+          class="preference-section"
+          id="section-security"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker">
+              SECURITY
+            </span>
+
+            <h2>
+              Account security
+            </h2>
+
+            <p>
+              Manage your credentials and protect your account.
+            </p>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="security-row">
+
+              <div>
+
+                <span class="security-label">
+                  Email address
+                </span>
+
+                <strong id="securityEmail">
+                  user@example.com
+                </strong>
+
+              </div>
+
+              <button
+                class="preference-button secondary"
+                id="changeEmailButton"
+                type="button"
+              >
+                Change
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="security-row">
+
+              <div>
+
+                <span class="security-label">
+                  Password
+                </span>
+
+                <strong>
+                  ••••••••••••
+                </strong>
+
+                <span class="setting-hint">
+                  Last changed 3 months ago.
+                </span>
+
+              </div>
+
+              <button
+                class="preference-button secondary"
+                id="changePasswordButton"
+                type="button"
+              >
+                Change
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="security-row">
+
+              <div>
+
+                <h3>
+                  Two-factor authentication
+                </h3>
+
+                <p>
+                  Add another layer of protection to your account.
+                </p>
+
+              </div>
+
+
+              <label class="toggle">
+
+                <input
+                  id="twoFactorToggle"
+                  type="checkbox"
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="security-row">
+
+              <div>
+
+                <h3>
+                  Active sessions
+                </h3>
+
+                <p>
+                  Sign out of all other devices.
+                </p>
+
+              </div>
+
+              <button
+                class="preference-button secondary"
+                id="logoutAllButton"
+                type="button"
+              >
+                Sign out all
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOGINS
+        ================================================== -->
+
+        <section
+          class="preference-section"
+          id="section-logins"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker">
+              SECURITY
+            </span>
+
+            <h2>
+              Login history
+            </h2>
+
+            <p>
+              Review recent activity on your account.
+            </p>
+
+          </div>
+
+
+          <div
+            class="login-list"
+            id="loginList"
+          ></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================== -->
+
+        <section
+          class="preference-section"
+          id="section-notifications"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker">
+              NOTIFICATIONS
+            </span>
+
+            <h2>
+              Notifications
+            </h2>
+
+            <p>
+              Choose which notifications you want to receive.
+            </p>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Replies
+                </h3>
+
+                <p>
+                  Notify me when someone replies to my conversations.
+                </p>
+
+              </div>
+
+              <label class="toggle">
+
+                <input
+                  type="checkbox"
+                  id="notificationReplies"
+                  checked
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Appreciation
+                </h3>
+
+                <p>
+                  Notify me when someone appreciates my posts.
+                </p>
+
+              </div>
+
+              <label class="toggle">
+
+                <input
+                  type="checkbox"
+                  id="notificationAppreciation"
+                  checked
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Account activity
+                </h3>
+
+                <p>
+                  Important security and account notifications.
+                </p>
+
+              </div>
+
+              <label class="toggle">
+
+                <input
+                  type="checkbox"
+                  id="notificationSecurity"
+                  checked
+                  disabled
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PRIVACY
+        ================================================== -->
+
+        <section
+          class="preference-section"
+          id="section-privacy"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker">
+              PRIVACY
+            </span>
+
+            <h2>
+              Privacy
+            </h2>
+
+            <p>
+              Control what other people can see about you.
+            </p>
+
+          </div>
+
+
+          <div class="preference-card">
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Profile visibility
+                </h3>
+
+                <p>
+                  Allow other people to view your profile.
+                </p>
+
+              </div>
+
+              <select id="profileVisibility">
+
+                <option value="public">
+                  Public
+                </option>
+
+                <option value="private">
+                  Private
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Show online status
+                </h3>
+
+                <p>
+                  Let other users see when you are online.
+                </p>
+
+              </div>
+
+              <label class="toggle">
+
+                <input
+                  type="checkbox"
+                  id="onlineStatus"
+                  checked
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+              <div>
+
+                <h3>
+                  Show activity
+                </h3>
+
+                <p>
+                  Allow others to see your recent activity.
+                </p>
+
+              </div>
+
+              <label class="toggle">
+
+                <input
+                  type="checkbox"
+                  id="showActivity"
+                  checked
+                >
+
+                <span class="toggle-slider"></span>
+
+              </label>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DELETE
+        ================================================== -->
+
+        <section
+          class="preference-section"
+          id="section-delete"
+        >
+
+          <div class="preference-section-header">
+
+            <span class="section-kicker danger-kicker">
+              DANGER ZONE
+            </span>
+
+            <h2>
+              Delete account
+            </h2>
+
+            <p>
+              Permanently remove your Suporly account and its data.
+            </p>
+
+          </div>
+
+
+          <div class="delete-card">
+
+            <div class="delete-icon">
+              !
+            </div>
+
+
+            <div class="delete-content">
+
+              <h3>
+                Permanently delete your account
+              </h3>
+
+              <p>
+                This action cannot be undone. Your profile,
+                conversations, comments, saved content and
+                account data will be permanently removed.
+              </p>
+
+
+              <button
+                class="delete-button"
+                id="deleteAccountButton"
+                type="button"
+              >
+                Delete account
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       DELETE MODAL
+  ====================================================== -->
+
+  <div
+    class="modal-overlay"
+    id="deleteModal"
+    hidden
+  >
+
+    <div
+      class="delete-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="deleteModalTitle"
+    >
+
+      <div class="delete-modal-icon">
+        !
+      </div>
+
+
+      <h2 id="deleteModalTitle">
+        Delete your account?
+      </h2>
+
+
+      <p>
+        This is permanent. Your account and its associated
+        data will be deleted and cannot be recovered.
+      </p>
+
+
+      <p class="confirm-instruction">
+        Type
+        <strong>
+          CONFIRM
+        </strong>
+        to continue.
+      </p>
+
+
+      <input
+        id="deleteConfirmation"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Type CONFIRM"
+      >
+
+
+      <div class="modal-actions">
+
+        <button
+          class="preference-button secondary"
+          id="cancelDeleteButton"
+          type="button"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="delete-button"
+          id="confirmDeleteButton"
+          type="button"
+          disabled
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+    <!-- =====================================================
+        FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+    <div class="site-footer-inner">
+
+
+        <!-- =================================================
+            BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+        <img
+            src="assets/logos/icon.png"
+            alt="Suporly"
+            class="footer-logo"
+        >
+
+        <div class="footer-brand-text">
+
+            <strong>
+            Suporly
+            </strong>
+
+            <span>
+            A friendly community built around helping people.
+            </span>
+
+        </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+            NAVIGATION
+        ================================================== -->
+
+        <nav class="footer-nav">
+
+        <a href="index.html">
+            Front-Page
+        </a>
+
+        <a href="rules.html">
+            Rules & Guidelines
+        </a>
+
+        <a href="support.html">
+            Support
+        </a>
+
+        </nav>
+
+
+
+    </div>
+    <!-- =================================================
+        COPYRIGHT
+    ================================================== -->
+
+    <div class="site-footer-bottom">
+
+        <span>
+        © 2026 Suporly. All rights reserved.
+        </span>
+
+        <span>
+        Built by <strong>GotorFI</strong>
+        </span>
+
+    </div>
+
+
+    </footer>
+
+
+
+  <script src="js/navigation.js"></script>
+  <script src="js/preferences.js"></script>
+
+</body>
+
+</html>
