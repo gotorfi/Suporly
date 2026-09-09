@@ -4,202 +4,6 @@
 
 
 /* =========================================================
-   PROFILE DATA
-========================================================= */
-
-/*
- * TEMPORARY DATA
- *
- * Later Python will provide this data.
- */
-
-const profileData = {
-
-    username: "GotorFI",
-
-    badge: "Member",
-
-    warning: {
-
-        active: true,
-
-        expiresAt:
-            "2026-11-27T00:00:00Z"
-
-    },
-
-
-    avatar:
-        "assets/temp/default_pfp.png",
-
-    joined:
-        "August 2026",
-
-    reputation:
-        842,
-
-    statistics: {
-
-        posts: 24,
-
-        comments: 87,
-
-        appreciation: 421,
-
-        saved: 16
-
-    },
-
-    posts: [
-
-        {
-            title:
-                "What game have you been playing lately?",
-
-            category:
-                "Games",
-
-            time:
-                "2 hours ago",
-
-            appreciation:
-                24,
-
-            responses:
-                8
-        },
-
-        {
-            title:
-                "How do you structure a large project?",
-
-            category:
-                "Development",
-
-            time:
-                "Yesterday",
-
-            appreciation:
-                35,
-
-            responses:
-                18
-        },
-
-        {
-            title:
-                "What makes a good horror game?",
-
-            category:
-                "Games",
-
-            time:
-                "3 days ago",
-
-            appreciation:
-                52,
-
-            responses:
-                21
-        }
-
-    ],
-
-    comments: [
-
-        {
-            text:
-                "Definitely try Hollow Knight if you haven't.",
-
-            conversation:
-                "What game deserves more attention?",
-
-            time:
-                "Today"
-        },
-
-        {
-            text:
-                "I think clear module boundaries become especially important once the project grows.",
-
-            conversation:
-                "When does clean architecture become overengineering?",
-
-            time:
-                "Yesterday"
-        }
-
-    ],
-
-    categories: [
-
-        {
-            name:
-                "Games",
-
-            icon:
-                "🎮"
-        },
-
-        {
-            name:
-                "Development",
-
-            icon:
-                "💻"
-        },
-
-        {
-            name:
-                "Music",
-
-            icon:
-                "♫"
-        }
-
-    ],
-
-    achievements: [
-
-        {
-            icon:
-                "✦",
-
-            title:
-                "First Conversation",
-
-            description:
-                "Created your first post."
-        },
-
-        {
-            icon:
-                "♡",
-
-            title:
-                "Appreciated",
-
-            description:
-                "Received 100 appreciation."
-        },
-
-        {
-            icon:
-                "◈",
-
-            title:
-                "Regular",
-
-            description:
-                "Reached 20 conversations."
-        }
-
-    ]
-
-};
-
-
-/* =========================================================
    PROFILE
 ========================================================= */
 
@@ -214,124 +18,287 @@ async function renderProfile() {
     }
 
 
-    document
-        .getElementById("profileUsername")
-        .textContent =
-            session.username;
+    /*
+     * Get the session ID.
+     */
+
+    const sessionId =
+        localStorage.getItem("suporly-session");
 
 
-    document
-        .getElementById("profileDisplayName")
-        .textContent =
-            session.displayname;
-
-
-    const avatar =
-        document.getElementById(
-            "profileAvatar"
-        );
-
-
-    const avatarId =
-        session.settings["profile-avatar"];
-
-
-    if (avatarId) {
-
-        await new Promise(
-            resolve => {
-
-                avatar.onload =
-                    () => resolve();
-
-                avatar.onerror =
-                    () => resolve();
-
-                avatar.src =
-                    "https://suporly-backend.onrender.com/images/avatar/"
-                    + avatarId;
-
-            }
-        );
-
-    } else {
-
-        avatar.src =
-            "assets/temp/default_pfp.png";
-
-    }
-
-    const profileBackground =
-        document.getElementById(
-            "profileBackground"
-        );
-
-    const bannerId =
-        session.settings["profile-banner"];
-
-    if (bannerId) {
-
-        profileBackground.style.backgroundImage =
-            "url('https://suporly-backend.onrender.com/images/banner/"
-            + bannerId
-            + "')";
-
-    } else {
-
-        profileBackground.style.backgroundImage =
-            "none";
-
+    if (!sessionId) {
+        hidePageLoader();
+        return;
     }
 
 
-    const verifiedBadge =
-        document.getElementById(
-            "profileVerifiedBadge"
+    /*
+     * Get the requested username from the URL.
+     *
+     * /profile.html
+     * /profile.html?user=GotorFI
+     */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
         );
 
-    verifiedBadge.hidden =
-        !session.settings.verified;
+
+    let username =
+        params.get("user");
 
 
-    const modBadge =
-        document.getElementById(
-            "profileModBadge"
+    /*
+     * If no username was provided,
+     * open the logged-in user's profile.
+     */
+
+    if (!username) {
+
+        username =
+            session.username.replace("@", "");
+
+        window.location.replace(
+            "profile.html?user="
+            + encodeURIComponent(username)
         );
 
-    modBadge.hidden =
-        !session.settings.mod;
+        return;
+    }
 
 
-    document
-        .getElementById("profileBio")
-        .textContent =
-            session.bio || "";
+    /*
+     * Get the requested public profile.
+     */
+
+    try {
+
+        const response =
+            await fetch(
+                "https://suporly-backend.onrender.com/api/profile/"
+                + encodeURIComponent(username)
+                + "?session="
+                + encodeURIComponent(sessionId)
+            );
 
 
-    document
-        .getElementById("profileJoinDate")
-        .textContent =
-            profileData.joined;
+        const data =
+            await response.json();
 
 
-    document
-        .getElementById("profileReputation")
-        .textContent =
-            profileData.reputation;
+        if (!data.success || !data.profile) {
+
+            console.error(
+                "Failed to load profile.",
+                data
+            );
+
+            hidePageLoader();
+            return;
+        }
 
 
-    renderStatistics();
+        const profile =
+            data.profile;
 
-    renderPosts();
-
-    renderComments();
-
-    renderCategories();
-
-    renderAchievements();
+        const viewer =
+            data.viewer;
 
 
-    hidePageLoader();
+        /*
+         * Store the currently loaded profile.
+         */
+
+        window.profileData =
+            profile;
+
+
+        /*
+         * Username
+         */
+
+        document
+            .getElementById("profileUsername")
+            .textContent =
+                profile.username;
+
+
+        /*
+         * Display name
+         */
+
+        document
+            .getElementById("profileDisplayName")
+            .textContent =
+                profile.displayname;
+
+
+        /*
+         * Avatar
+         */
+
+        const avatar =
+            document.getElementById(
+                "profileAvatar"
+            );
+
+
+        if (profile.avatar) {
+
+            await new Promise(
+                resolve => {
+
+                    avatar.onload =
+                        () => resolve();
+
+                    avatar.onerror =
+                        () => resolve();
+
+                    avatar.src =
+                        "https://suporly-backend.onrender.com/images/avatar/"
+                        + profile.avatar;
+
+                }
+            );
+
+        } else {
+
+            avatar.src =
+                "assets/temp/default_pfp.png";
+
+        }
+
+
+        /*
+         * Banner
+         */
+
+        const profileBackground =
+            document.getElementById(
+                "profileBackground"
+            );
+
+
+        if (profile.banner) {
+
+            profileBackground.style.backgroundImage =
+                "url('https://suporly-backend.onrender.com/images/banner/"
+                + profile.banner
+                + "')";
+
+        } else {
+
+            profileBackground.style.backgroundImage =
+                "none";
+
+        }
+
+
+        /*
+         * Verified badge
+         */
+
+        const verifiedBadge =
+            document.getElementById(
+                "profileVerifiedBadge"
+            );
+
+
+        verifiedBadge.hidden =
+            !profile.verified;
+
+
+        /*
+         * Moderator badge
+         */
+
+        const modBadge =
+            document.getElementById(
+                "profileModBadge"
+            );
+
+
+        modBadge.hidden =
+            !profile.mod;
+
+
+        /*
+         * Bio
+         */
+
+        document
+            .getElementById("profileBio")
+            .textContent =
+                profile.bio || "";
+
+
+        /*
+         * Edit profile
+         *
+         * The backend decides whether
+         * the viewer owns this profile.
+         */
+
+        const editProfileButton =
+            document.getElementById(
+                "editProfileButton"
+            );
+
+
+        if (editProfileButton) {
+
+            editProfileButton.hidden =
+                !viewer.is_owner;
+
+        }
+
+
+        /*
+         * These values are not provided
+         * by the public profile endpoint yet.
+         */
+
+        document
+            .getElementById("profileJoinDate")
+            .textContent =
+                "—";
+
+
+        document
+            .getElementById("profileReputation")
+            .textContent =
+                "—";
+
+
+        /*
+         * These sections will be connected
+         * to backend data later.
+         */
+
+        renderStatistics();
+
+        renderPosts();
+
+        renderComments();
+
+        renderCategories();
+
+        renderAchievements();
+
+
+        hidePageLoader();
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load profile:",
+            error
+        );
+
+        hidePageLoader();
+
+    }
 
 }
 
@@ -342,56 +309,52 @@ async function renderProfile() {
 
 function renderStatistics() {
 
-    const stats =
-        profileData.statistics;
-
-
     document
         .getElementById("statPosts")
         .textContent =
-            stats.posts;
+            "—";
 
 
     document
         .getElementById("statComments")
         .textContent =
-            stats.comments;
+            "—";
 
 
     document
         .getElementById("statAppreciation")
         .textContent =
-            stats.appreciation;
+            "—";
 
 
     document
         .getElementById("statSaved")
         .textContent =
-            stats.saved;
+            "—";
 
 
     document
         .getElementById("aboutReputation")
         .textContent =
-            profileData.reputation;
+            "—";
 
 
     document
         .getElementById("aboutPosts")
         .textContent =
-            stats.posts;
+            "—";
 
 
     document
         .getElementById("aboutComments")
         .textContent =
-            stats.comments;
+            "—";
 
 
     document
         .getElementById("aboutAppreciation")
         .textContent =
-            stats.appreciation;
+            "—";
 
 }
 
@@ -410,59 +373,6 @@ function renderPosts() {
 
     container.innerHTML = "";
 
-
-    profileData.posts.forEach(
-        post => {
-
-            const element =
-                document.createElement("article");
-
-
-            element.className =
-                "profile-post";
-
-
-            element.innerHTML = `
-
-                <div class="profile-post-main">
-
-                    <span class="profile-post-category">
-                        ${escapeHTML(post.category)}
-                    </span>
-
-                    <h3>
-                        ${escapeHTML(post.title)}
-                    </h3>
-
-                    <span class="profile-post-time">
-                        ${escapeHTML(post.time)}
-                    </span>
-
-                </div>
-
-
-                <div class="profile-post-stats">
-
-                    <span>
-                        ♡ ${post.appreciation}
-                    </span>
-
-                    <span>
-                        ○ ${post.responses}
-                    </span>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                element
-            );
-
-        }
-    );
-
 }
 
 
@@ -479,51 +389,6 @@ function renderComments() {
 
 
     container.innerHTML = "";
-
-
-    profileData.comments.forEach(
-        comment => {
-
-            const element =
-                document.createElement("article");
-
-
-            element.className =
-                "profile-comment";
-
-
-            element.innerHTML = `
-
-                <div class="profile-comment-icon">
-                    “
-                </div>
-
-                <div>
-
-                    <p>
-                        ${escapeHTML(comment.text)}
-                    </p>
-
-                    <span>
-                        On
-                        <strong>
-                            ${escapeHTML(comment.conversation)}
-                        </strong>
-                        ·
-                        ${escapeHTML(comment.time)}
-                    </span>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                element
-            );
-
-        }
-    );
 
 }
 
@@ -542,36 +407,6 @@ function renderCategories() {
 
     container.innerHTML = "";
 
-
-    profileData.categories.forEach(
-        category => {
-
-            const element =
-                document.createElement("span");
-
-
-            element.className =
-                "profile-category";
-
-
-            element.innerHTML = `
-
-                <span>
-                    ${category.icon}
-                </span>
-
-                ${escapeHTML(category.name)}
-
-            `;
-
-
-            container.appendChild(
-                element
-            );
-
-        }
-    );
-
 }
 
 
@@ -588,46 +423,6 @@ function renderAchievements() {
 
 
     container.innerHTML = "";
-
-
-    profileData.achievements.forEach(
-        achievement => {
-
-            const element =
-                document.createElement("div");
-
-
-            element.className =
-                "profile-achievement";
-
-
-            element.innerHTML = `
-
-                <div class="achievement-icon">
-                    ${achievement.icon}
-                </div>
-
-                <div>
-
-                    <strong>
-                        ${escapeHTML(achievement.title)}
-                    </strong>
-
-                    <span>
-                        ${escapeHTML(achievement.description)}
-                    </span>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                element
-            );
-
-        }
-    );
 
 }
 
@@ -655,27 +450,10 @@ function escapeHTML(value) {
    EDIT PROFILE
 ========================================================= */
 
-document
-    .getElementById("editProfileButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            /*
-             * Later this can open
-             * the Python-powered
-             * profile editor.
-             */
-
-            console.log(
-                "Edit profile"
-            );
-
-        }
-    );
-
 const editProfileButton =
-    document.getElementById("editProfileButton");
+    document.getElementById(
+        "editProfileButton"
+    );
 
 
 if (editProfileButton) {
@@ -698,4 +476,3 @@ if (editProfileButton) {
 ========================================================= */
 
 renderProfile();
-
