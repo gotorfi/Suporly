@@ -13,7 +13,6 @@ async function renderProfile() {
         await loadSessionData();
 
     if (!session) {
-        hidePageLoader();
         window.location.replace("access-denied.html");
         return;
     }
