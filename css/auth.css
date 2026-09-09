@@ -97,11 +97,7 @@
 }
 
 
-/* Light theme logo = black */
 
-body[data-theme="light"] .auth-logo img {
-    filter: brightness(0) saturate(100%);
-}
 
 
 /* =========================================================
