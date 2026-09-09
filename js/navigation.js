@@ -40,6 +40,62 @@ function setTheme(theme) {
 
     });
 
+
+    const themeMenuIcon =
+        document.getElementById(
+            "themeMenuIcon"
+        );
+
+    const themeMenuLabel =
+        document.getElementById(
+            "themeMenuLabel"
+        );
+
+
+    const themeData = {
+
+        light: {
+            icon: "☀",
+            label: "Light"
+        },
+
+        dark: {
+            icon: "◐",
+            label: "Dark"
+        },
+
+        suporly: {
+            icon: "✦",
+            label: "Suporly"
+        }
+
+    };
+
+
+    const currentTheme =
+        themeData[theme];
+
+
+    if (!currentTheme) {
+        return;
+    }
+
+
+    if (themeMenuIcon) {
+
+        themeMenuIcon.textContent =
+            currentTheme.icon;
+
+    }
+
+
+    if (themeMenuLabel) {
+
+        themeMenuLabel.textContent =
+            currentTheme.label;
+
+    }
+
 }
 
 
@@ -153,40 +209,65 @@ document.addEventListener(
    PROFILE IMAGE
 ========================================================= */
 
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
 const DEFAULT_PROFILE_IMAGE =
     "assets/temp/default_pfp.png";
 
 
-function loadProfileImage() {
+async function loadProfileImage() {
 
     const profileIcon =
         document.getElementById(
             "profileIcon"
         );
 
-
     if (!profileIcon)
         return;
 
 
-    /*
-     * Later this can come from
-     * the logged-in user's account.
-     */
+    const session =
+        await loadSessionData();
 
-    const savedProfileImage =
-        localStorage.getItem(
-            "suporly-profile-image"
+    if (!session)
+        return;
+
+
+    const avatarId =
+        session.settings["profile-avatar"];
+
+
+    if (avatarId) {
+
+        await new Promise(
+            resolve => {
+
+                profileIcon.onload =
+                    () => resolve();
+
+                profileIcon.onerror =
+                    () => {
+
+                        profileIcon.src =
+                            DEFAULT_PROFILE_IMAGE;
+
+                        resolve();
+
+                    };
+
+                profileIcon.src =
+                    "https://suporly-backend.onrender.com/images/avatar/"
+                    + avatarId;
+
+            }
         );
-
-
-    if (
-        savedProfileImage &&
-        savedProfileImage.trim()
-    ) {
-
-        profileIcon.src =
-            savedProfileImage;
 
     } else {
 
@@ -195,19 +276,160 @@ function loadProfileImage() {
 
     }
 
+}
 
-    profileIcon.onerror =
-        () => {
+/* =========================================================
+   ACCOUNT
+========================================================= */
 
-            profileIcon.src =
-                DEFAULT_PROFILE_IMAGE;
+function createAccountBadges(badges) {
 
-        };
+    const container =
+        document.getElementById(
+            "accountBadges"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    if (!badges) {
+        return;
+    }
+
+
+    if (badges.verified) {
+
+        const badge =
+            document.createElement("img");
+
+        badge.className =
+            "account-badge";
+
+        badge.src =
+            "assets/logos/verified.png";
+
+        badge.alt =
+            "Verified";
+
+        badge.title =
+            "Verified account";
+
+        container.appendChild(
+            badge
+        );
+
+    }
+
+
+    if (badges.mod) {
+
+        const badge =
+            document.createElement("img");
+
+        badge.className =
+            "account-badge";
+
+        badge.src =
+            "assets/logos/mod.png";
+
+        badge.alt =
+            "Moderator";
+
+        badge.title =
+            "Moderator";
+
+        container.appendChild(
+            badge
+        );
+
+    }
+
+
+    if (badges.warning) {
+
+        const badge =
+            document.createElement("img");
+
+        badge.className =
+            "account-badge account-badge-warning";
+
+        badge.src =
+            "assets/logos/warned.png";
+
+        badge.alt =
+            "Warning";
+
+        badge.title =
+            "Warning";
+
+        container.appendChild(
+            badge
+        );
+
+    }
 
 }
 
 
-loadProfileImage();
+async function loadAccountInfo() {
+
+    const displayname =
+        document.getElementById(
+            "accountDisplayname"
+        );
+
+
+    if (!displayname) {
+        return;
+    }
+
+
+    const session =
+        await loadSessionData();
+
+
+    if (!session) {
+
+        displayname.textContent =
+            "Account";
+
+        return;
+
+    }
+
+
+    displayname.textContent =
+        session.displayname || "Account";
+
+
+    createAccountBadges(
+        session.settings
+    );
+
+}
+
+
+
+async function initializeNavigation() {
+
+    await loadProfileImage();
+
+    await loadAccountInfo();
+
+    hidePageLoader();
+
+}
+
+
+initializeNavigation();
+
+
+
 
 
 /* =========================================================

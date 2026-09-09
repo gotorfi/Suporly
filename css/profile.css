@@ -1102,6 +1102,46 @@
 }
 
 /* =========================================================
+   PROFILE BACKGROUND
+========================================================= */
+
+.profile-main {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.profile-background {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PROFILE CONTENT ABOVE BACKGROUND
+========================================================= */
+
+.profile-hero,
+.profile-stats,
+.profile-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 

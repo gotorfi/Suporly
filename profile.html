@@ -37,179 +37,202 @@
 
 
 <body data-theme="light">
+  <div id="pageLoader" class="page-loader">
+      <div class="page-loader-content">
+
+          <img
+              src="assets/logos/logo.png"
+              class="page-loader-logo"
+              alt="Suporly"
+          >
+
+          <div class="page-loader-spinner"></div>
+
+      </div>
+  </div>
+  <script src="js/loader.js"></script>
 
 
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
+  <!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-  <header class="site-header">
 
-    <!-- BRAND -->
+<header class="site-header">
 
-    <a
-      class="brand"
-      href="home.html"
+<a
+    class="brand"
+    href="home.html"
+>
+
+    <img
+    class="brand-logo"
+    src="assets/logos/icon.png"
+    alt="Suporly"
     >
 
-      <img
-        class="brand-logo"
-        src="assets/logos/icon.png"
-        alt="Suporly"
-      >
+    <span>
+    Suporly
+    </span>
 
-      <span>Suporly</span>
+</a>
 
+
+<nav class="site-nav">
+
+    <a href="home.html">
+    Home
     </a>
 
+    <a href="explore.html">
+    Explore
+    </a>
 
-    <!-- NAVIGATION -->
+    <a href="saved.html">
+    Saved
+    </a>
 
-    <nav class="site-nav">
-
-      <a href="home.html">
-        Home
-      </a>
-
-      <a href="explore.html">
-        Explore
-      </a>
-
-      <a href="saved.html">
-        Saved
-      </a>
-
-    </nav>
+</nav>
 
 
-    <!-- SEARCH -->
+<div class="site-search">
 
-    <div class="site-search">
+    <span class="search-icon">
+    ⌕
+    </span>
 
-      <span class="search-icon">
-        ⌕
-      </span>
+    <input
+    id="conversationSearch"
+    type="search"
+    placeholder="Search conversations..."
+    autocomplete="off"
+    aria-label="Search conversations"
+    >
 
-      <input
-        id="conversationSearch"
-        type="search"
-        placeholder="Search conversations..."
-        autocomplete="off"
-        aria-label="Search conversations"
-      >
-
-    </div>
+</div>
 
 
-    <!-- ACTIONS -->
+<a
+    class="new-conversation-button active"
+    href="new.html"
+>
 
-    <div class="site-actions">
+    <span class="new-conversation-icon">
+    +
+    </span>
+
+    <span>
+    New
+    </span>
+
+</a>
 
 
-      <!-- THEME -->
+<div class="site-actions">
 
-      <div class="theme-menu">
+    <!-- THEME -->
+
+    <div class="theme-menu">
+    <button
+        class="theme-menu-button"
+        id="themeMenuButton"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+
+        <span
+            class="theme-menu-icon"
+            id="themeMenuIcon"
+        >
+            ☀
+        </span>
+
+        <span id="themeMenuLabel">
+            Light
+        </span>
+
+        <span class="theme-menu-arrow">
+            ▾
+        </span>
+
+    </button>
+
+
+    <div
+        class="theme-menu-dropdown"
+        id="themeMenuDropdown"
+    >
 
         <button
-          class="theme-menu-button"
-          id="themeMenuButton"
-          type="button"
-          aria-haspopup="true"
-          aria-expanded="false"
+        class="theme-option"
+        data-theme="light"
+        type="button"
         >
-
-          <span class="theme-menu-icon">
-            ◐
-          </span>
-
-          <span>
-            Theme
-          </span>
-
-          <span class="theme-menu-arrow">
-            ▾
-          </span>
-
+        <span>☀</span>
+        <span>Light</span>
         </button>
 
 
-        <div
-          class="theme-menu-dropdown"
-          id="themeMenuDropdown"
+        <button
+        class="theme-option"
+        data-theme="dark"
+        type="button"
         >
-
-          <button
-            class="theme-option"
-            data-theme="light"
-            type="button"
-          >
-
-            <span>☀</span>
-
-            <span>
-              Light
-            </span>
-
-          </button>
+        <span>◐</span>
+        <span>Dark</span>
+        </button>
 
 
-          <button
-            class="theme-option"
-            data-theme="dark"
-            type="button"
-          >
-
-            <span>◐</span>
-
-            <span>
-              Dark
-            </span>
-
-          </button>
-
-
-          <button
-            class="theme-option"
-            data-theme="suporly"
-            type="button"
-          >
-
-            <span>✦</span>
-
-            <span>
-              Suporly
-            </span>
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- ACCOUNT -->
-
-      <a
-        class="account-button active"
-        href="profile.html"
-      >
-
-        <span>
-          Account
-        </span>
-
-        <img
-          class="profile-icon"
-          id="profileIcon"
-          src="assets/temp/default_pfp.png"
-          alt="Profile"
+        <button
+        class="theme-option"
+        data-theme="suporly"
+        type="button"
         >
-
-      </a>
+        <span>✦</span>
+        <span>Suporly</span>
+        </button>
 
     </div>
 
-  </header>
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <a
+        class="account-button"
+        href="profile.html"
+    >
+
+        <div class="account-user-info">
+
+            <span
+                class="account-displayname"
+                id="accountDisplayname"
+            >
+                Account
+            </span>
+
+            <div
+                class="account-badges"
+                id="accountBadges"
+            ></div>
+
+        </div>
+
+        <img
+            class="profile-icon"
+            id="profileIcon"
+            src="assets/temp/default_pfp.png"
+            alt="Profile"
+        >
+
+    </a>
+
+</div>
+
+</header>
 
 
 
@@ -218,7 +241,10 @@
   ====================================================== -->
 
   <main class="profile-main">
-
+    <div
+      id="profileBackground"
+      class="profile-background"
+    ></div>
 
     <!-- ===================================================
          PROFILE HERO
@@ -726,10 +752,10 @@
     </footer>
 
 
-
+  <script src="js/session.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/profile.js"></script>
-
+  
 </body>
 
 </html>

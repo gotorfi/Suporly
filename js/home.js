@@ -11,62 +11,62 @@ const categories = [
 
   {
     name: "Games",
-    icon: "🎮"
+    icon: "assets/icons/games.png"
   },
 
   {
     name: "Freetime",
-    icon: "☕"
+    icon: "assets/icons/freetime.png"
   },
 
   {
     name: "Development",
-    icon: "💻"
+    icon: "assets/icons/development.png"
   },
 
   {
     name: "Help",
-    icon: "❓"
+    icon: "assets/icons/help.png"
   },
 
   {
     name: "Discussion",
-    icon: "💬"
+    icon: "assets/icons/discussion.png"
   },
 
   {
     name: "Animals",
-    icon: "🐾"
+    icon: "assets/icons/animals.png"
   },
 
   {
     name: "Music",
-    icon: "♫"
+    icon: "assets/icons/music.png"
   },
 
   {
     name: "Sport",
-    icon: "⚽"
+    icon: "assets/icons/sport.png"
   },
 
   {
     name: "News",
-    icon: "📰"
+    icon: "assets/icons/news.png"
   },
 
   {
     name: "Anime",
-    icon: "✦"
+    icon: "assets/icons/anime.png"
   },
 
   {
     name: "Art",
-    icon: "🎨"
+    icon: "assets/icons/art.png"
   },
 
   {
     name: "Self-Development",
-    icon: "◈"
+    icon: "assets/icons/self-development.png"
   }
 
 ];
@@ -146,7 +146,10 @@ function buildWheel() {
       item.innerHTML = `
 
         <span class="category-icon">
-          ${category.icon}
+          <img
+            src="${category.icon}"
+            alt="${category.name}"
+          >
         </span>
 
         <span class="category-name">

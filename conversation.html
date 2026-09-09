@@ -1,0 +1,896 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1020"
+    >
+
+    <title>
+        Conversation — Suporly
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/navigation.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/conversation.css"
+    >
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body data-theme="light">
+  <div id="pageLoader" class="page-loader">
+      <div class="page-loader-content">
+
+          <img
+              src="assets/logos/logo.png"
+              class="page-loader-logo"
+              alt="Suporly"
+          >
+
+          <div class="page-loader-spinner"></div>
+
+      </div>
+  </div>
+  <script src="js/loader.js"></script>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+
+<header class="site-header">
+
+<a
+    class="brand"
+    href="home.html"
+>
+
+    <img
+    class="brand-logo"
+    src="assets/logos/icon.png"
+    alt="Suporly"
+    >
+
+    <span>
+    Suporly
+    </span>
+
+</a>
+
+
+<nav class="site-nav">
+
+    <a href="home.html">
+    Home
+    </a>
+
+    <a href="explore.html">
+    Explore
+    </a>
+
+    <a href="saved.html">
+    Saved
+    </a>
+
+</nav>
+
+
+<div class="site-search">
+
+    <span class="search-icon">
+    ⌕
+    </span>
+
+    <input
+    id="conversationSearch"
+    type="search"
+    placeholder="Search conversations..."
+    autocomplete="off"
+    aria-label="Search conversations"
+    >
+
+</div>
+
+
+<a
+    class="new-conversation-button active"
+    href="new.html"
+>
+
+    <span class="new-conversation-icon">
+    +
+    </span>
+
+    <span>
+    New
+    </span>
+
+</a>
+
+
+<div class="site-actions">
+
+    <!-- THEME -->
+
+    <div class="theme-menu">
+    <button
+        class="theme-menu-button"
+        id="themeMenuButton"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+
+        <span
+            class="theme-menu-icon"
+            id="themeMenuIcon"
+        >
+            ☀
+        </span>
+
+        <span id="themeMenuLabel">
+            Light
+        </span>
+
+        <span class="theme-menu-arrow">
+            ▾
+        </span>
+
+    </button>
+
+
+    <div
+        class="theme-menu-dropdown"
+        id="themeMenuDropdown"
+    >
+
+        <button
+        class="theme-option"
+        data-theme="light"
+        type="button"
+        >
+        <span>☀</span>
+        <span>Light</span>
+        </button>
+
+
+        <button
+        class="theme-option"
+        data-theme="dark"
+        type="button"
+        >
+        <span>◐</span>
+        <span>Dark</span>
+        </button>
+
+
+        <button
+        class="theme-option"
+        data-theme="suporly"
+        type="button"
+        >
+        <span>✦</span>
+        <span>Suporly</span>
+        </button>
+
+    </div>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <a
+        class="account-button"
+        href="profile.html"
+    >
+
+        <div class="account-user-info">
+
+            <span
+                class="account-displayname"
+                id="accountDisplayname"
+            >
+                Account
+            </span>
+
+            <div
+                class="account-badges"
+                id="accountBadges"
+            ></div>
+
+        </div>
+
+        <img
+            class="profile-icon"
+            id="profileIcon"
+            src="assets/temp/default_pfp.png"
+            alt="Profile"
+        >
+
+    </a>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="conversation-page">
+
+
+    <!-- =====================================================
+         CONVERSATION
+    ====================================================== -->
+
+    <article class="conversation-shell">
+
+
+        <!-- =================================================
+             ORIGIN
+        ================================================== -->
+
+        <section class="conversation-origin">
+
+
+            <div class="origin-category">
+
+                <img
+                    src="assets/icons/games.png"
+                    alt=""
+                    class="origin-category-icon"
+                >
+
+                <span>
+                    Games
+                </span>
+
+            </div>
+
+            <div class="conversation-date" id="conversationDate">
+                September 8, 2026
+            </div>
+
+            <h1 class="conversation-title">
+                “What game have you been playing lately?”
+            </h1>
+
+
+            <!-- =================================================
+                 IMAGE GALLERY
+            ================================================== -->
+
+            <div
+                class="conversation-gallery"
+                id="conversationGallery"
+                hidden
+            >
+
+                <button
+                    class="gallery-arrow gallery-arrow-left"
+                    type="button"
+                    aria-label="Previous image"
+                >
+                    ‹
+                </button>
+
+
+                <div class="gallery-stage">
+
+                    <div class="gallery-background"></div>
+
+                    <img
+                        id="galleryImage"
+                        class="gallery-image"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+                <button
+                    class="gallery-arrow gallery-arrow-right"
+                    type="button"
+                    aria-label="Next image"
+                >
+                    ›
+                </button>
+
+
+                <div
+                    class="gallery-counter"
+                    id="galleryCounter"
+                >
+                    1 / 1
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTEXT
+            ================================================== -->
+
+            <div class="conversation-context">
+
+                <div class="section-label">
+                    Context
+                </div>
+
+                <p id="conversationContext">
+
+                    I've been trying a few different games recently
+                    and I'm curious what everyone else has been
+                    spending their time on.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ORIGIN FOOTER
+            ================================================== -->
+
+            <div class="origin-footer">
+
+                <div class="origin-author">
+
+                    <img
+                        src="assets/temp/default_pfp.png"
+                        alt=""
+                        class="author-avatar"
+                    >
+
+                    <div class="author-information">
+
+                        <div class="author-name-row">
+
+                            <strong>GotorFI</strong>
+
+                            <div class="author-inline-badges"></div>
+
+                        </div>
+
+                        <span class="author-username">
+                            @GotorFI
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REPUTATION
+            ================================================== -->
+
+            <div class="reputation-section">
+
+
+                <div class="reputation-header">
+
+                    <span>
+                        Reputation
+                    </span>
+
+                    <span
+                        id="reputationTotal"
+                        class="reputation-total"
+                    >
+                        48
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="reputation-list"
+                    id="reputationList"
+                >
+
+                    <!-- Generated by JS -->
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 ORIGIN ACTIONS
+            ================================================== -->
+
+            <div class="origin-actions">
+
+                <button
+                    class="conversation-action primary"
+                    id="replyButton"
+                    type="button"
+                >
+                    Reply
+                </button>
+
+                <button
+                    class="conversation-action"
+                    id="saveButton"
+                    type="button"
+                >
+                    <img
+                        id="saveButtonIcon"
+                        src="assets/icons/bookmark.png"
+                        alt=""
+                    >
+
+                    <span id="saveButtonText">
+                        Save
+                    </span>
+                </button>
+
+                <button
+                    class="conversation-action danger-action"
+                    id="reportOriginButton"
+                    type="button"
+                >
+                    Report
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             REPLIES
+        ====================================================== -->
+
+        <section class="conversation-replies">
+
+
+            <div class="replies-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Conversation
+                    </span>
+
+                    <h2>
+                        Replies
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="replies-jump"
+                    id="repliesJump"
+                    type="button"
+                    aria-label="Go to replies"
+                >
+                    <img
+                        id="repliesJumpIcon"
+                        src="assets/icons/replies.png"
+                        alt=""
+                    >
+
+                    <span
+                        id="replyCount"
+                        class="replies-jump-count"
+                    >
+                        4
+                    </span>
+                </button>
+
+            </div>
+
+
+            <div
+                class="reply-list"
+                id="replyList"
+            >
+
+                <!-- Generated by JS -->
+
+            </div>
+
+
+            <!-- =================================================
+                 NEW REPLY
+            ================================================== -->
+
+            <div
+                class="reply-composer"
+                id="replyComposer"
+            >
+
+                <div class="composer-avatar">
+
+                    <img
+                        src="assets/temp/default_pfp.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="composer-main">
+
+                    <textarea
+                        id="replyInput"
+                        maxlength="2000"
+                        placeholder="Write a reply..."
+                    ></textarea>
+
+
+                    <div class="composer-footer">
+
+                        <span>
+                            <span id="replyCharacterCount">
+                                0
+                            </span>
+                            / 2000
+                        </span>
+
+
+                        <div>
+
+                            <button
+                                class="conversation-action"
+                                id="cancelReplyButton"
+                                type="button"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                class="conversation-action primary"
+                                id="submitReplyButton"
+                                type="button"
+                            >
+                                Send Reply
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </article>
+
+</main>
+
+
+
+<!-- =========================================================
+     REPUTATION MODAL
+========================================================= -->
+
+<div
+    class="conversation-modal-overlay"
+    id="reputationModal"
+    hidden
+>
+
+    <div
+        class="conversation-modal reputation-modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal
+        >
+            ×
+        </button>
+
+
+        <div
+            class="modal-reputation-icon"
+            id="modalReputationIcon"
+        ></div>
+
+
+        <h2 id="modalReputationTitle">
+            Love
+        </h2>
+
+
+        <p class="modal-description">
+            People who gave this reputation
+        </p>
+
+
+        <div
+            class="reputation-givers"
+            id="reputationGivers"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     REPORT MODAL
+========================================================= -->
+
+<div
+    class="conversation-modal-overlay"
+    id="reportModal"
+    hidden
+>
+
+    <div
+        class="conversation-modal report-modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal
+        >
+            ×
+        </button>
+
+
+        <span class="section-label">
+            Safety
+        </span>
+
+
+        <h2>
+            Report this content
+        </h2>
+
+
+        <p class="modal-description">
+            Tell us what is wrong with this content.
+        </p>
+
+
+        <div
+            class="report-reasons"
+            id="reportReasons"
+        >
+
+            <button
+                type="button"
+                data-reason="spam"
+            >
+                Spam
+            </button>
+
+            <button
+                type="button"
+                data-reason="scam"
+            >
+                Scam
+            </button>
+
+            <button
+                type="button"
+                data-reason="fraud"
+            >
+                Fraud
+            </button>
+
+            <button
+                type="button"
+                data-reason="nsfw"
+            >
+                NSFW
+            </button>
+
+            <button
+                type="button"
+                data-reason="rude"
+            >
+                Rude / Insulting
+            </button>
+
+            <button
+                type="button"
+                data-reason="conflict"
+            >
+                Provoking conflict
+            </button>
+
+            <button
+                type="button"
+                data-reason="harassment"
+            >
+                Harassment
+            </button>
+
+            <button
+                type="button"
+                data-reason="other"
+            >
+                Other
+            </button>
+
+        </div>
+
+
+        <textarea
+            id="reportDetails"
+            class="report-details"
+            maxlength="1000"
+            placeholder="Additional details (optional)"
+        ></textarea>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="conversation-action"
+                data-close-modal
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="conversation-action danger"
+                id="submitReportButton"
+                type="button"
+            >
+                Submit Report
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     EDIT MODAL
+========================================================= -->
+
+<div
+    class="conversation-modal-overlay"
+    id="editModal"
+    hidden
+>
+
+    <div
+        class="conversation-modal edit-modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <button
+            class="modal-close"
+            type="button"
+            data-close-modal
+        >
+            ×
+        </button>
+
+
+        <span class="section-label">
+            Edit reply
+        </span>
+
+
+        <h2>
+            Edit your reply
+        </h2>
+
+
+        <textarea
+            id="editInput"
+            class="edit-input"
+            maxlength="2000"
+        ></textarea>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="conversation-action"
+                data-close-modal
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="conversation-action primary"
+                id="submitEditButton"
+                type="button"
+            >
+                Submit
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="page-scroll-controls">
+
+    <button
+        id="moveToTop"
+        type="button"
+    >
+        ↑ Top
+    </button>
+
+    <button
+        id="moveToBottom"
+        type="button"
+    >
+        ↓ Bottom
+    </button>
+
+</div>
+
+<div
+    class="reputation-burst"
+    id="reputationBurst"
+    aria-hidden="true"
+></div>
+
+<div
+    class="conversation-prompt"
+    id="conversationPrompt"
+    aria-live="polite"
+></div>
+
+<script src="js/session.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/conversation.js"></script>
+
+</body>
+
+</html>

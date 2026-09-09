@@ -1,0 +1,698 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/new.css" rel="stylesheet">
+
+  <title>
+    Suporly — New Conversation
+  </title>
+
+</head>
+
+<body data-theme="light">
+  <div id="pageLoader" class="page-loader">
+      <div class="page-loader-content">
+
+          <img
+              src="assets/logos/logo.png"
+              class="page-loader-logo"
+              alt="Suporly"
+          >
+
+          <div class="page-loader-spinner"></div>
+
+      </div>
+  </div>
+  <script src="js/loader.js"></script>
+
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+
+<header class="site-header">
+
+<a
+    class="brand"
+    href="home.html"
+>
+
+    <img
+    class="brand-logo"
+    src="assets/logos/icon.png"
+    alt="Suporly"
+    >
+
+    <span>
+    Suporly
+    </span>
+
+</a>
+
+
+<nav class="site-nav">
+
+    <a href="home.html">
+    Home
+    </a>
+
+    <a href="explore.html">
+    Explore
+    </a>
+
+    <a href="saved.html">
+    Saved
+    </a>
+
+</nav>
+
+
+<div class="site-search">
+
+    <span class="search-icon">
+    ⌕
+    </span>
+
+    <input
+    id="conversationSearch"
+    type="search"
+    placeholder="Search conversations..."
+    autocomplete="off"
+    aria-label="Search conversations"
+    >
+
+</div>
+
+
+<a
+    class="new-conversation-button active"
+    href="new.html"
+>
+
+    <span class="new-conversation-icon">
+    +
+    </span>
+
+    <span>
+    New
+    </span>
+
+</a>
+
+
+<div class="site-actions">
+
+    <!-- THEME -->
+
+    <div class="theme-menu">
+    <button
+        class="theme-menu-button"
+        id="themeMenuButton"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+
+        <span
+            class="theme-menu-icon"
+            id="themeMenuIcon"
+        >
+            ☀
+        </span>
+
+        <span id="themeMenuLabel">
+            Light
+        </span>
+
+        <span class="theme-menu-arrow">
+            ▾
+        </span>
+
+    </button>
+
+
+    <div
+        class="theme-menu-dropdown"
+        id="themeMenuDropdown"
+    >
+
+        <button
+        class="theme-option"
+        data-theme="light"
+        type="button"
+        >
+        <span>☀</span>
+        <span>Light</span>
+        </button>
+
+
+        <button
+        class="theme-option"
+        data-theme="dark"
+        type="button"
+        >
+        <span>◐</span>
+        <span>Dark</span>
+        </button>
+
+
+        <button
+        class="theme-option"
+        data-theme="suporly"
+        type="button"
+        >
+        <span>✦</span>
+        <span>Suporly</span>
+        </button>
+
+    </div>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <a
+        class="account-button"
+        href="profile.html"
+    >
+
+        <div class="account-user-info">
+
+            <span
+                class="account-displayname"
+                id="accountDisplayname"
+            >
+                Account
+            </span>
+
+            <div
+                class="account-badges"
+                id="accountBadges"
+            ></div>
+
+        </div>
+
+        <img
+            class="profile-icon"
+            id="profileIcon"
+            src="assets/temp/default_pfp.png"
+            alt="Profile"
+        >
+
+    </a>
+
+</div>
+
+</header>
+
+
+
+  <!-- =====================================================
+       NEW CONVERSATION
+  ====================================================== -->
+
+  <main class="new-conversation-main">
+
+
+    <!-- HEADING -->
+
+    <section class="new-conversation-heading">
+
+      <span class="new-conversation-label">
+        START A CONVERSATION
+      </span>
+
+      <h1>
+        New Conversation
+      </h1>
+
+      <p>
+        Give people something worth talking about.
+      </p>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         FORM
+    ==================================================== -->
+
+    <section class="conversation-layout">
+
+
+      <div class="conversation-form">
+
+
+        <!-- THEME -->
+
+        <div class="conversation-panel">
+
+          <div class="conversation-panel-heading">
+
+            <div>
+
+              <span class="field-label">
+                Theme
+              </span>
+
+              <h2>
+                What is this about?
+              </h2>
+
+            </div>
+
+          </div>
+
+
+          <div class="theme-selector">
+
+            <button
+              class="theme-select-button"
+              type="button"
+            >
+
+            <div class="theme-select-icon-wrapper">
+                <img
+                    class="theme-select-icon"
+                    src="assets/icons/games.png"
+                    alt="Games"
+                >
+            </div>
+
+              <span class="theme-select-content">
+
+                <strong>
+                  Games
+                </strong>
+
+                <small>
+                  Games, game development, mechanics and experiences.
+                </small>
+
+              </span>
+
+              <span class="theme-select-arrow">
+                ▾
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <p class="theme-description">
+            Choose the theme that best fits the conversation.
+            Conversations in the wrong theme may be moved or removed.
+          </p>
+
+        </div>
+
+
+
+        <!-- TOPIC -->
+
+        <div class="conversation-panel">
+
+          <div class="field-header">
+
+            <div>
+
+              <span class="field-label">
+                Topic
+              </span>
+
+              <h2>
+                What do you want to talk about?
+              </h2>
+
+            </div>
+
+            <span class="character-count">
+              0 / 100
+            </span>
+
+          </div>
+
+
+          <input
+            class="topic-input"
+            type="text"
+            maxlength="100"
+            placeholder="Write the main thought of your conversation..."
+          >
+
+
+          <p class="field-help">
+            Keep it short. This is the sentence people will see first.
+          </p>
+
+        </div>
+
+
+
+        <!-- IMAGES -->
+
+        <div class="conversation-panel">
+
+          <div class="field-header">
+
+            <div>
+
+              <span class="field-label">
+                Images
+              </span>
+
+              <h2>
+                Add something visual
+              </h2>
+
+            </div>
+
+            <span class="character-count">
+              0 / 3
+            </span>
+
+          </div>
+
+
+          <div class="conversation-images">
+
+
+            <!-- ADD -->
+
+            <button
+              class="image-slot add-image"
+              type="button"
+            >
+
+              <span>
+                +
+              </span>
+
+              <small>
+                Add image
+              </small>
+
+            </button>
+
+
+            <!-- EMPTY -->
+
+            <div class="image-slot empty-image">
+              <span>+</span>
+            </div>
+
+
+            <div class="image-slot empty-image">
+              <span>+</span>
+            </div>
+
+
+          </div>
+
+
+          <p class="field-help">
+            You can add up to three images. Images may be placed
+            in a review queue before appearing publicly.
+          </p>
+
+        </div>
+
+
+
+        <!-- CONTEXT -->
+
+        <div class="conversation-panel">
+
+          <div class="field-header">
+
+            <div>
+
+              <span class="field-label">
+                Context
+              </span>
+
+              <h2>
+                Anything else?
+              </h2>
+
+            </div>
+
+            <span class="optional-label">
+              OPTIONAL
+            </span>
+
+          </div>
+
+
+          <textarea
+            class="context-input"
+            placeholder="Give people a little more context..."
+          ></textarea>
+
+
+          <p class="field-help">
+            You don't need to explain everything. Leave room for
+            people to join the conversation.
+          </p>
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="conversation-actions">
+
+          <a
+            class="conversation-cancel"
+            href="home.html"
+          >
+            Cancel
+          </a>
+
+
+          <button
+            class="conversation-preview-button"
+            type="button"
+          >
+            Submit
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- =================================================
+           PREVIEW
+      ================================================== -->
+
+      <aside class="conversation-preview">
+
+        <div class="preview-heading">
+
+          <span>
+            PREVIEW
+          </span>
+
+        </div>
+
+
+        <article class="conversation-preview-card">
+
+
+            <div class="preview-theme">
+
+                <div class="preview-theme-icon-wrapper">
+
+                    <img
+                    class="preview-theme-icon"
+                    src="assets/icons/games.png"
+                    alt="Games"
+                    >
+
+                </div>
+
+                <span class="preview-theme-name">
+                    Games
+                </span>
+
+            </div>
+
+
+          <h2>
+            "What makes a game world actually feel alive?"
+          </h2>
+
+
+          <p class="preview-context">
+            Add a little context to help people join the conversation.
+          </p>
+
+
+          <div class="preview-image-placeholder">
+
+            <span>
+              Image preview
+            </span>
+
+          </div>
+
+
+          <div class="preview-footer">
+
+            <div class="preview-author">
+
+              <img
+                src="assets/temp/default_pfp.png"
+                alt=""
+              >
+
+              <span>
+                @GotorFI
+              </span>
+
+            </div>
+
+
+            <span>
+              Just now
+            </span>
+
+          </div>
+
+
+        </article>
+
+      </aside>
+
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       POST WARNING
+  ====================================================== -->
+
+  <div
+    class="conversation-warning-overlay"
+    hidden
+  >
+
+    <div class="conversation-warning">
+
+      <span class="warning-label">
+        BEFORE YOU POST
+      </span>
+
+
+      <h2>
+        Ready to start this conversation?
+      </h2>
+
+
+      <p>
+        Please make sure your conversation is in the correct
+        theme and follows the Suporly rules.
+      </p>
+
+
+      <div class="warning-list">
+
+        <div>
+
+          <strong>
+            Images may be reviewed
+          </strong>
+
+          <span>
+            Conversations containing images may enter a
+            review queue before they become visible.
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Choose the right theme
+          </strong>
+
+          <span>
+            Posting in the wrong category may result in the
+            conversation being moved or removed.
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Keep it respectful
+          </strong>
+
+          <span>
+            Harassment, abuse and other rule violations can
+            lead to restrictions or a ban.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="warning-actions">
+
+        <button
+          class="warning-cancel"
+          type="button"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="warning-submit"
+          type="button"
+        >
+          Agree and Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="js/session.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/new.js"></script>
+
+
+</body>
+
+</html>

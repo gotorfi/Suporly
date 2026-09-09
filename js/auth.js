@@ -1,3 +1,4 @@
+
 /* =========================================================
    SUPORLY AUTH
 ========================================================= */
@@ -110,6 +111,7 @@ const loginCodeInputs =
   );
 
 let currentLoginEmail = "";
+let currentLoginChallenge = "";
 
 
 /* =========================================================
@@ -132,8 +134,16 @@ function showLoginVerification(email) {
     input.value = "";
   });
 
+  showElementMessage(
+    verificationMessage,
+    "",
+    ""
+  );
+
   setTimeout(() => {
+
     loginCodeInputs[0]?.focus();
+
   }, 50);
 
 }
@@ -145,78 +155,87 @@ function showLoginVerification(email) {
 
 loginCodeInputs.forEach((input, index) => {
 
-  input.addEventListener("input", event => {
+  input.addEventListener(
+    "input",
+    event => {
 
-    const value =
-      event.target.value
-        .replace(/\D/g, "");
+      const value =
+        event.target.value
+          .replace(/[^0-9]/g, "");
 
-    event.target.value =
-      value.slice(-1);
-
-
-    if (
-      value &&
-      index < loginCodeInputs.length - 1
-    ) {
-
-      loginCodeInputs[index + 1].focus();
-
-    }
-
-  });
+      event.target.value =
+        value.slice(-1);
 
 
-  input.addEventListener("keydown", event => {
+      if (
+        value &&
+        index < loginCodeInputs.length - 1
+      ) {
 
-    if (
-      event.key === "Backspace" &&
-      !input.value &&
-      index > 0
-    ) {
+        loginCodeInputs[index + 1].focus();
 
-      loginCodeInputs[index - 1].focus();
+      }
 
     }
-
-  });
-
-
-  input.addEventListener("paste", event => {
-
-    event.preventDefault();
-
-    const pasted =
-      event.clipboardData
-        .getData("text")
-        .replace(/\D/g, "")
-        .slice(0, 6);
+  );
 
 
-    pasted
-      .split("")
-      .forEach((digit, i) => {
+  input.addEventListener(
+    "keydown",
+    event => {
 
-        if (loginCodeInputs[i]) {
-          loginCodeInputs[i].value = digit;
-        }
+      if (
+        event.key === "Backspace" &&
+        !input.value &&
+        index > 0
+      ) {
 
-      });
+        loginCodeInputs[index - 1].focus();
 
-
-    if (pasted.length) {
-
-      const nextIndex =
-        Math.min(
-          pasted.length,
-          loginCodeInputs.length - 1
-        );
-
-      loginCodeInputs[nextIndex].focus();
+      }
 
     }
+  );
 
-  });
+
+  input.addEventListener(
+    "paste",
+    event => {
+
+      event.preventDefault();
+
+      const pasted =
+        event.clipboardData
+          .getData("text")
+          .replace(/[^0-9]/g, "")
+          .slice(0, 6);
+
+
+      pasted
+        .split("")
+        .forEach((digit, i) => {
+
+          if (loginCodeInputs[i]) {
+            loginCodeInputs[i].value = digit;
+          }
+
+        });
+
+
+      if (pasted.length) {
+
+        const nextIndex =
+          Math.min(
+            pasted.length,
+            loginCodeInputs.length - 1
+          );
+
+        loginCodeInputs[nextIndex].focus();
+
+      }
+
+    }
+  );
 
 });
 
@@ -233,6 +252,7 @@ if (loginForm) {
 
       event.preventDefault();
 
+
       const email =
         document
           .getElementById("email")
@@ -243,11 +263,6 @@ if (loginForm) {
         document
           .getElementById("password")
           .value;
-
-      const remember =
-        document
-          .getElementById("remember")
-          .checked;
 
 
       if (!email || !password) {
@@ -272,53 +287,130 @@ if (loginForm) {
         "Signing in...";
 
 
-      /*
-       * ====================================================
-       * PYTHON BACKEND
-       * ====================================================
-       *
-       * const response = await fetch(
-       *   "http://localhost:8000/api/login",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       email,
-       *       password,
-       *       remember
-       *     })
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (data.requires_verification) {
-       *   showLoginVerification(email);
-       *   return;
-       * }
-       *
-       * if (data.success) {
-       *   window.location.href = "index.html";
-       * }
-       */
+      try {
+
+        const response = await fetch(
+          "https://suporly-backend.onrender.com/api/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email,
+              password,
+              session_id: localStorage.getItem("suporly-session")
+            })
+          }
+        );
 
 
-      /* TEMPORARY DEMO */
-
-      await new Promise(
-        resolve => setTimeout(resolve, 700)
-      );
+        const data =
+          await response.json();
 
 
-      submitButton.disabled = false;
+        /* =================================================
+           ACCOUNT NOT VERIFIED
+        ================================================= */
 
-      submitButton.textContent =
-        "Sign in";
+        if (
+          data.success ===
+          "NotVerified"
+        ) {
+
+          showMessage(
+            "Please activate your account first.",
+            "error"
+          );
+
+          return;
+
+        }
 
 
-      showLoginVerification(email);
+        /* =================================================
+           TWO-FACTOR AUTHENTICATION REQUIRED
+        ================================================= */
+
+        if (
+          data.success &&
+          typeof data.success === "object" &&
+          data.success.status ===
+            "TwoFactorRequired"
+        ) {
+
+          currentLoginChallenge =
+            data.success.challenge;
+
+
+          if (!currentLoginChallenge) {
+
+            showMessage(
+              "Unable to start two-factor authentication.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          showLoginVerification(
+            email
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           INVALID LOGIN
+        ================================================= */
+
+        if (!data.success) {
+
+          showMessage(
+            "Invalid email or password.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           LOGIN WITHOUT 2FA
+        ================================================= */
+
+        localStorage.setItem(
+          "suporly-session",
+          data.success
+        );
+
+
+        window.location.href =
+          "home.html";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          "Unable to connect to the server.",
+          "error"
+        );
+
+      } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Sign in";
+
+      }
 
     }
   );
@@ -359,55 +451,194 @@ if (verifyCode) {
       }
 
 
+      if (!currentLoginChallenge) {
+
+        showElementMessage(
+          verificationMessage,
+          "Your login verification has expired. Please sign in again.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
       verifyCode.disabled = true;
 
       verifyCode.textContent =
         "Verifying...";
 
 
-      /*
-       * PYTHON BACKEND
-       *
-       * const response = await fetch(
-       *   "http://localhost:8000/api/verify-login",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       email: currentLoginEmail,
-       *       code
-       *     })
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (data.success) {
-       *   window.location.href = "index.html";
-       * }
-       */
+      try {
+
+        const response = await fetch(
+          "https://suporly-backend.onrender.com/api/verify-login-two-factor",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              challenge:
+                currentLoginChallenge,
+
+              code:
+                code,
+
+              recovery:
+                false
+            })
+          }
+        );
 
 
-      /* TEMPORARY DEMO */
-
-      await new Promise(
-        resolve => setTimeout(resolve, 700)
-      );
+        const data =
+          await response.json();
 
 
-      showElementMessage(
-        verificationMessage,
-        "Frontend demo: verification code accepted.",
-        "success"
-      );
+        /* =================================================
+           SUCCESS
+        ================================================= */
+
+        if (
+          typeof data.success === "string" &&
+          data.success
+        ) {
+
+          localStorage.setItem(
+            "suporly-session",
+            data.success
+          );
 
 
-      verifyCode.disabled = false;
+          currentLoginChallenge = "";
 
-      verifyCode.textContent =
-        "Verify code";
+
+          window.location.href =
+            "home.html";
+
+
+          return;
+
+        }
+
+
+        /* =================================================
+           INVALID CODE
+        ================================================= */
+
+        if (
+          data.success ===
+          "TwoFactorInvalid"
+        ) {
+
+          showElementMessage(
+            verificationMessage,
+            "Incorrect authentication code.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           EXPIRED CHALLENGE
+        ================================================= */
+
+        if (
+          data.success ===
+          "ChallengeExpired"
+        ) {
+
+          currentLoginChallenge = "";
+
+          showElementMessage(
+            verificationMessage,
+            "This verification request has expired. Please sign in again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           INVALID CHALLENGE
+        ================================================= */
+
+        if (
+          data.success ===
+          "ChallengeInvalid"
+        ) {
+
+          currentLoginChallenge = "";
+
+          showElementMessage(
+            verificationMessage,
+            "This verification request is no longer valid. Please sign in again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           TOO MANY ATTEMPTS
+        ================================================= */
+
+        if (
+          data.success ===
+          "ChallengeLocked"
+        ) {
+
+          currentLoginChallenge = "";
+
+          showElementMessage(
+            verificationMessage,
+            "Too many incorrect attempts. Please sign in again.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =================================================
+           UNKNOWN ERROR
+        ================================================= */
+
+        showElementMessage(
+          verificationMessage,
+          "Unable to verify the authentication code.",
+          "error"
+        );
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showElementMessage(
+          verificationMessage,
+          "Unable to connect to the server.",
+          "error"
+        );
+
+      } finally {
+
+        verifyCode.disabled = false;
+
+        verifyCode.textContent =
+          "Verify code";
+
+      }
 
     }
   );
@@ -427,53 +658,13 @@ if (renewLoginCode) {
 
   renewLoginCode.addEventListener(
     "click",
-    async () => {
-
-      if (!currentLoginEmail) return;
-
-
-      renewLoginCode.disabled = true;
-
-      renewLoginCode.textContent =
-        "Sending...";
-
-
-      /*
-       * PYTHON BACKEND
-       *
-       * await fetch(
-       *   "http://localhost:8000/api/renew-login-code",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       email: currentLoginEmail
-       *     })
-       *   }
-       * );
-       */
-
-
-      /* TEMPORARY DEMO */
-
-      await new Promise(
-        resolve => setTimeout(resolve, 700)
-      );
-
+    () => {
 
       showElementMessage(
         verificationMessage,
-        `A new confirmation code was sent to ${currentLoginEmail}.`,
-        "success"
+        "Please sign in again to request a new verification.",
+        "error"
       );
-
-
-      renewLoginCode.disabled = false;
-
-      renewLoginCode.innerHTML =
-        "Didn't receive the code? <strong>Renew code</strong>";
 
     }
   );
@@ -495,18 +686,35 @@ if (backToLogin) {
     "click",
     () => {
 
-        verificationStep?.classList.add("hidden");
+      currentLoginChallenge = "";
 
-        loginStep?.classList.remove("hidden");
+      verificationStep?.classList.add(
+        "hidden"
+      );
 
-        loginCodeInputs.forEach(input => {
-            input.value = "";
-        });
+      loginStep?.classList.remove(
+        "hidden"
+      );
 
-        showMessage("", "");
-        
 
-        document
+      loginCodeInputs.forEach(input => {
+        input.value = "";
+      });
+
+
+      showElementMessage(
+        verificationMessage,
+        "",
+        ""
+      );
+
+      showMessage(
+        "",
+        ""
+      );
+
+
+      document
         .getElementById("password")
         ?.focus();
 
@@ -535,12 +743,13 @@ const activationEmail =
   document.getElementById("activationEmail");
 
 const signupMessage =
-    document.getElementById("signupMessage");
+  document.getElementById("signupMessage");
 
 const activationMessage =
-    document.getElementById("activationMessage");
+  document.getElementById("activationMessage");
 
 let currentSignupEmail = "";
+let currentSignupUserId = "";
 
 
 /* =========================================================
@@ -698,57 +907,95 @@ if (signupForm) {
         "Creating account...";
 
 
-      /*
-       * ====================================================
-       * PYTHON BACKEND
-       * ====================================================
-       *
-       * const response = await fetch(
-       *   "http://localhost:8000/api/register",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       username,
-       *       email,
-       *       password
-       *     })
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (!response.ok) {
-       *
-       *   showElementMessage(
-       *     signupMessage,
-       *     data.message || "Unable to create account.",
-       *     "error"
-       *   );
-       *
-       *   return;
-       * }
-       *
-       * showActivation(email);
-       */
+      /* ================================================
+         PYTHON BACKEND
+      ================================================= */
+
+      try {
+
+        const response = await fetch(
+          "https://suporly-backend.onrender.com/api/sign-new-user",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username,
+              email,
+              password
+            })
+          }
+        );
 
 
-      /* TEMPORARY DEMO */
-
-      await new Promise(
-        resolve => setTimeout(resolve, 700)
-      );
+        const data = await response.json();
 
 
-      submitButton.disabled = false;
+        if (data.success === "UsernameTaken") {
 
-      submitButton.textContent =
-        "Create account";
+          showElementMessage(
+            signupMessage,
+            "That username is already taken.",
+            "error"
+          );
+
+          return;
+
+        }
 
 
-      showActivation(email);
+        if (data.success === "EmailTaken") {
+
+          showElementMessage(
+            signupMessage,
+            "That email is already registered.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (!data.success) {
+
+          showElementMessage(
+            signupMessage,
+            "Unable to create account.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        currentSignupUserId =
+          data.success;
+
+
+        showActivation(email);
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showElementMessage(
+          signupMessage,
+          "Unable to connect to the server.",
+          "error"
+        );
+
+      } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Create account";
+
+      }
 
     }
   );
@@ -774,7 +1021,7 @@ activationInputs.forEach((input, index) => {
 
       const value =
         event.target.value
-          .replace(/\D/g, "");
+          .replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
 
       event.target.value =
         value.slice(-1);
@@ -820,7 +1067,7 @@ activationInputs.forEach((input, index) => {
       const pasted =
         event.clipboardData
           .getData("text")
-          .replace(/\D/g, "")
+          .replace(/[^a-zA-Z0-9]/g, "").toUpperCase()
           .slice(0, 6);
 
 
@@ -886,60 +1133,135 @@ if (activateAccount) {
       }
 
 
+      if (!currentSignupUserId) {
+
+        showElementMessage(
+          activationMessage,
+          "Unable to identify your account. Please sign up again.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
       activateAccount.disabled = true;
 
       activateAccount.textContent =
         "Activating...";
 
 
-      /*
-       * ====================================================
-       * PYTHON BACKEND
-       * ====================================================
-       *
-       * const response = await fetch(
-       *   "http://localhost:8000/api/activate",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       email: currentSignupEmail,
-       *       code
-       *     })
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (data.success) {
-       *
-       *   window.location.href =
-       *     "login.html";
-       *
-       * }
-       */
+      try {
+
+        const response = await fetch(
+          "https://suporly-backend.onrender.com/api/check-verification",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              userid: currentSignupUserId,
+              code
+            })
+          }
+        );
 
 
-      /* TEMPORARY DEMO */
-
-      await new Promise(
-        resolve => setTimeout(resolve, 700)
-      );
+        const data = await response.json();
 
 
-      showElementMessage(
-        activationMessage,
-        "Frontend demo: account activated successfully.",
-        "success"
-      );
+        /*
+         * Backend response:
+         *
+         * session ID = success
+         * 1 = wrong code
+         * 2 = locked
+         * 3 = expired
+         * 4 = error
+         */
 
 
-      activateAccount.disabled = false;
+        if (typeof data.success === "string") {
 
-      activateAccount.textContent =
-        "Activate account";
+          localStorage.setItem(
+            "suporly-session",
+            data.success
+          );
+
+          window.location.href =
+            "home.html";
+
+          return;
+
+        }
+
+
+        if (data.success === 1) {
+
+          showElementMessage(
+            activationMessage,
+            "Incorrect activation code.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (data.success === 2) {
+
+          showElementMessage(
+            activationMessage,
+            "Too many incorrect attempts. Please request a new activation code.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (data.success === 3) {
+
+          showElementMessage(
+            activationMessage,
+            "This activation code has expired. Please request a new code.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showElementMessage(
+          activationMessage,
+          "Unable to activate your account.",
+          "error"
+        );
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showElementMessage(
+          activationMessage,
+          "Unable to connect to the server.",
+          "error"
+        );
+
+      } finally {
+
+        activateAccount.disabled = false;
+
+        activateAccount.textContent =
+          "Activate account";
+
+      }
 
     }
   );
@@ -971,26 +1293,6 @@ if (
 
       renewSignupCode.innerHTML =
         "Sending...";
-
-
-      /*
-       * ====================================================
-       * PYTHON BACKEND
-       * ====================================================
-       *
-       * await fetch(
-       *   "http://localhost:8000/api/renew-activation-code",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json"
-       *     },
-       *     body: JSON.stringify({
-       *       email: currentSignupEmail
-       *     })
-       *   }
-       * );
-       */
 
 
       /* TEMPORARY DEMO */
@@ -1049,3 +1351,4 @@ if (changeEmail) {
   );
 
 }
+

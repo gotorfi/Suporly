@@ -28,8 +28,6 @@ const profileData = {
 
     },
 
-    bio:
-        "Building things, playing games and occasionally getting lost in interesting ideas.",
 
     avatar:
         "assets/temp/default_pfp.png",
@@ -205,24 +203,109 @@ const profileData = {
    PROFILE
 ========================================================= */
 
-function renderProfile() {
+async function renderProfile() {
+
+    const session =
+        await loadSessionData();
+
+    if (!session) {
+        hidePageLoader();
+        return;
+    }
+
 
     document
         .getElementById("profileUsername")
         .textContent =
-            "@" + profileData.username;
+            session.username;
 
 
     document
-        .getElementById("profileBadge")
+        .getElementById("profileDisplayName")
         .textContent =
-            profileData.badge;
+            session.displayname;
+
+
+    const avatar =
+        document.getElementById(
+            "profileAvatar"
+        );
+
+
+    const avatarId =
+        session.settings["profile-avatar"];
+
+
+    if (avatarId) {
+
+        await new Promise(
+            resolve => {
+
+                avatar.onload =
+                    () => resolve();
+
+                avatar.onerror =
+                    () => resolve();
+
+                avatar.src =
+                    "https://suporly-backend.onrender.com/images/avatar/"
+                    + avatarId;
+
+            }
+        );
+
+    } else {
+
+        avatar.src =
+            "assets/temp/default_pfp.png";
+
+    }
+
+    const profileBackground =
+        document.getElementById(
+            "profileBackground"
+        );
+
+    const bannerId =
+        session.settings["profile-banner"];
+
+    if (bannerId) {
+
+        profileBackground.style.backgroundImage =
+            "url('https://suporly-backend.onrender.com/images/banner/"
+            + bannerId
+            + "')";
+
+    } else {
+
+        profileBackground.style.backgroundImage =
+            "none";
+
+    }
+
+
+    const verifiedBadge =
+        document.getElementById(
+            "profileVerifiedBadge"
+        );
+
+    verifiedBadge.hidden =
+        !session.settings.verified;
+
+
+    const modBadge =
+        document.getElementById(
+            "profileModBadge"
+        );
+
+    modBadge.hidden =
+        !session.settings.mod;
 
 
     document
         .getElementById("profileBio")
         .textContent =
-            profileData.bio;
+            session.bio || "";
 
 
     document
@@ -237,12 +320,6 @@ function renderProfile() {
             profileData.reputation;
 
 
-    document
-        .getElementById("profileAvatar")
-        .src =
-            profileData.avatar;
-
-
     renderStatistics();
 
     renderPosts();
@@ -252,6 +329,9 @@ function renderProfile() {
     renderCategories();
 
     renderAchievements();
+
+
+    hidePageLoader();
 
 }
 

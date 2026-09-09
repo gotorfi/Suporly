@@ -11,18 +11,65 @@
 
 const categories = [
 
-  { name: "Games", icon: "🎮" },
-  { name: "Freetime", icon: "☕" },
-  { name: "Development", icon: "💻" },
-  { name: "Help", icon: "❓" },
-  { name: "Discussion", icon: "💬" },
-  { name: "Animals", icon: "🐾" },
-  { name: "Music", icon: "♫" },
-  { name: "Sport", icon: "⚽" },
-  { name: "News", icon: "📰" },
-  { name: "Anime", icon: "✦" },
-  { name: "Art", icon: "🎨" },
-  { name: "Self-Development", icon: "◈" }
+  {
+    name: "Games",
+    icon: "assets/icons/games.png"
+  },
+
+  {
+    name: "Freetime",
+    icon: "assets/icons/freetime.png"
+  },
+
+  {
+    name: "Development",
+    icon: "assets/icons/development.png"
+  },
+
+  {
+    name: "Help",
+    icon: "assets/icons/help.png"
+  },
+
+  {
+    name: "Discussion",
+    icon: "assets/icons/discussion.png"
+  },
+
+  {
+    name: "Animals",
+    icon: "assets/icons/animals.png"
+  },
+
+  {
+    name: "Music",
+    icon: "assets/icons/music.png"
+  },
+
+  {
+    name: "Sport",
+    icon: "assets/icons/sport.png"
+  },
+
+  {
+    name: "News",
+    icon: "assets/icons/news.png"
+  },
+
+  {
+    name: "Anime",
+    icon: "assets/icons/anime.png"
+  },
+
+  {
+    name: "Art",
+    icon: "assets/icons/art.png"
+  },
+
+  {
+    name: "Self-Development",
+    icon: "assets/icons/self-development.png"
+  }
 
 ];
 
@@ -101,13 +148,15 @@ function buildWheel() {
       item.innerHTML = `
 
         <span class="explore-category-icon">
-          ${category.icon}
+          <img
+            src="${category.icon}"
+            alt="${category.name}"
+          >
         </span>
 
         <span class="explore-category-name">
           ${category.name}
         </span>
-
       `;
 
 

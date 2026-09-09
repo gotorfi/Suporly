@@ -218,7 +218,7 @@
 
 
         <!-- =========================================
-             CONFIRMATION CODE
+            TWO-FACTOR AUTHENTICATION
         ========================================== -->
 
         <div
@@ -239,16 +239,14 @@
           <div class="auth-heading">
 
             <span class="section-kicker">
-              VERIFICATION
+              TWO-FACTOR AUTHENTICATION
             </span>
 
-            <h1>Check your email</h1>
+            <h1>Enter your code</h1>
 
             <p>
-              We sent a 6-digit confirmation code to
-              <strong id="verificationEmail">
-                your email
-              </strong>.
+              Enter the 6-digit code from your
+              authenticator app.
             </p>
 
           </div>
@@ -311,7 +309,7 @@
 
 
           <p class="verification-hint">
-            Enter the code from your email.
+            Open your authenticator app to get your code.
           </p>
 
 
@@ -333,19 +331,19 @@
           ></div>
 
 
-          <!-- RENEW -->
+          <!-- RECOVERY -->
 
           <div class="renew-code">
 
             <span>
-                Didn't receive the code?
+              Lost access to your authenticator?
             </span>
 
             <button
-                type="button"
-                id="renewCode"
+              type="button"
+              id="renewCode"
             >
-                Renew code
+              Use a recovery code
             </button>
 
           </div>
@@ -353,13 +351,13 @@
 
           <!-- BACK -->
 
-        <button
+          <button
             type="button"
             class="back-button"
             id="backToLogin"
-        >
+          >
             ← Back to sign in
-        </button>
+          </button>
 
         </div>
 
@@ -452,7 +450,7 @@
 
   </div>
 
-
+  <script src="js/session.js"></script>
   <script src="js/auth.js"></script>
 
 </body>

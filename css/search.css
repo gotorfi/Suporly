@@ -1,0 +1,1097 @@
+/* =========================================================
+   SEARCH PAGE
+========================================================= */
+
+.search-page {
+
+    width: min(100% - 48px, 1100px);
+
+    margin: 0 auto;
+
+    padding:
+        46px 0 80px;
+
+}
+
+
+/* =========================================================
+   SEARCH HEADER
+========================================================= */
+
+.search-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.search-header h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    letter-spacing: -.02em;
+
+}
+
+
+.search-query {
+
+    margin: 8px 0 0;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================================
+   SEARCH TABS
+========================================================= */
+
+.search-tabs {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    margin-bottom: 26px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.search-tab {
+
+    position: relative;
+
+    padding: 11px 22px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color .2s ease,
+        background-color .2s ease;
+
+}
+
+
+.search-tab:hover {
+
+    color: var(--text);
+
+}
+
+
+.search-tab.active {
+
+    color: var(--text);
+
+}
+
+
+.search-tab.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: -1px;
+
+    height: 2px;
+
+    background: var(--accent);
+
+    border-radius: 2px;
+
+}
+
+
+/* =========================================================
+   SEARCH PANEL
+========================================================= */
+
+.search-panel {
+
+    width: 100%;
+
+}
+
+
+.search-panel[hidden] {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   SEARCH TOOLBAR
+========================================================= */
+
+.search-toolbar {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.search-result-count {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   SEARCH SORT
+========================================================= */
+
+.search-sort {
+
+    position: relative;
+
+    width: 180px;
+
+    flex-shrink: 0;
+
+}
+
+
+.search-sort-button {
+
+    width: 100%;
+
+    min-height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 11px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-small);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: left;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.search-sort-button:hover {
+
+    background: var(--surface-2);
+
+    border-color: var(--border-strong);
+
+}
+
+
+.search-sort.open .search-sort-button {
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px var(--accent-soft);
+
+}
+
+
+.search-sort-icon {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    color: var(--accent);
+
+    font-size: 17px;
+
+    line-height: 1;
+
+}
+
+
+.search-sort-value {
+
+    flex: 1;
+
+}
+
+
+.search-sort-arrow {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    transition:
+        transform .2s ease;
+
+}
+
+
+.search-sort.open .search-sort-arrow {
+
+    transform: rotate(180deg);
+
+}
+
+
+/* =========================================================
+   SORT DROPDOWN
+========================================================= */
+
+.search-sort-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 7px);
+
+    right: 0;
+
+    width: 100%;
+
+    padding: 5px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--surface);
+
+    box-shadow: var(--shadow);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-5px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .15s ease,
+        visibility .15s ease,
+        transform .15s ease;
+
+    z-index: 50;
+
+}
+
+
+.search-sort.open .search-sort-dropdown {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================================================
+   SORT OPTIONS
+========================================================= */
+
+.search-sort-option {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border: 0;
+
+    border-radius: var(--radius-small);
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    text-align: left;
+
+    transition:
+        background-color .15s ease,
+        color .15s ease;
+
+}
+
+
+.search-sort-option:hover {
+
+    background: var(--surface-2);
+
+    color: var(--text);
+
+}
+
+
+.search-sort-option.active {
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+}
+
+
+.search-sort-option-icon {
+
+    width: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+}
+
+
+.search-sort-option.active
+.search-sort-option-icon {
+
+    color: var(--accent);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 620px) {
+
+    .search-sort {
+
+        width: 100%;
+
+    }
+
+}
+
+/* =========================================================
+   SEARCH BADGES
+========================================================= */
+
+.profile-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-result-displayname-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+
+.profile-result-badges {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.profile-result-badges .profile-inline-badge {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
+    transition:
+        transform var(--transition),
+        filter var(--transition);
+}
+
+.profile-result-badges .profile-inline-badge:hover {
+    transform: scale(1.12);
+}
+
+.profile-result-badges .profile-inline-badge-verified {
+    filter: none;
+}
+
+.profile-result-badges .profile-inline-badge-moderator {
+    filter: none;
+}
+
+.profile-result-badges .profile-inline-badge-warning {
+    filter:
+        drop-shadow(
+            0 0 5px
+            var(--danger)
+        );
+}
+
+
+
+/* =========================================================
+   CONVERSATION RESULTS
+========================================================= */
+
+.conversation-search-list {
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.conversation-result {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-height: 92px;
+
+    padding: 15px 4px;
+
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        background-color .2s ease;
+
+}
+
+
+.conversation-result:hover {
+
+    background: var(--surface-2);
+
+}
+
+
+/* =========================================================
+   CONVERSATION AUTHOR
+========================================================= */
+
+.conversation-result-author {
+
+    width: 190px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.conversation-result-avatar {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+.conversation-result-author-info {
+
+    min-width: 0;
+
+}
+
+
+.conversation-result-displayname {
+
+    display: block;
+
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+
+.conversation-result-date {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   CONVERSATION CONTENT
+========================================================= */
+
+.conversation-result-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.conversation-result-title {
+
+    display: block;
+
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    transition:
+        color .2s ease;
+
+}
+
+
+.conversation-result:hover .conversation-result-title {
+
+    color: var(--accent);
+
+}
+
+
+/* =========================================================
+   CONVERSATION STATS
+========================================================= */
+
+.conversation-result-stats {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 14px;
+
+    min-width: 230px;
+
+    flex-shrink: 0;
+
+}
+
+
+.conversation-stat {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+}
+
+
+.conversation-reputations {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+.conversation-reputation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+.conversation-reputation img {
+
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+
+}
+
+
+/* =========================================================
+   LOAD MORE
+========================================================= */
+
+.search-load-more-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    padding-top: 22px;
+
+}
+
+
+.search-load-more {
+
+    padding: 9px 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-small);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.search-load-more:hover {
+
+    background: var(--surface-2);
+
+    border-color: var(--border-strong);
+
+}
+
+
+/* =========================================================
+   PROFILE RESULTS
+========================================================= */
+
+.profile-search-list {
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.profile-result {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 4px;
+
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        background-color .2s ease;
+
+}
+
+
+.profile-result:hover {
+
+    background: var(--surface-2);
+
+}
+
+
+.profile-result-avatar {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+.profile-result-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.profile-result-displayname-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-width: 0;
+
+}
+
+
+.profile-result-displayname {
+
+    display: block;
+
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+
+.profile-result-username {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+.conversation-result-displayname-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-width: 0;
+
+}
+
+
+.conversation-result-badges {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    flex-shrink: 0;
+
+}
+
+
+.conversation-result-badges .profile-inline-badge {
+
+    width: 14px;
+    height: 14px;
+
+    display: block;
+
+    flex: 0 0 auto;
+
+    object-fit: contain;
+
+    transition:
+        transform var(--transition),
+        filter var(--transition);
+
+}
+
+
+.conversation-result-badges .profile-inline-badge:hover {
+
+    transform: scale(1.12);
+
+}
+
+
+.conversation-result-badges .profile-inline-badge-verified {
+
+    filter: none;
+
+}
+
+
+.conversation-result-badges .profile-inline-badge-moderator {
+
+    filter: none;
+
+}
+
+
+.conversation-result-badges .profile-inline-badge-warning {
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            var(--danger)
+        );
+
+}
+
+
+.profile-result-active {
+
+    flex-shrink: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.search-empty {
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .search-page {
+
+        width: min(100% - 30px, 700px);
+
+        padding-top: 32px;
+
+    }
+
+
+    .conversation-result {
+
+        align-items: flex-start;
+
+    }
+
+
+    .conversation-result-author {
+
+        width: 155px;
+
+    }
+
+
+    .conversation-result-stats {
+
+        min-width: auto;
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 6px;
+
+    }
+
+}
+
+
+@media (max-width: 620px) {
+
+    .search-page {
+
+        width: min(100% - 22px, 520px);
+
+    }
+
+
+    .search-header h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .conversation-result {
+
+        display: grid;
+
+        grid-template-columns: auto 1fr;
+
+        gap: 10px 12px;
+
+        padding: 14px 2px;
+
+    }
+
+
+    .conversation-result-author {
+
+        width: auto;
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .conversation-result-content {
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .conversation-result-stats {
+
+        grid-column: 1 / -1;
+
+        flex-direction: row;
+
+        justify-content: flex-start;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .conversation-result-title {
+
+        white-space: normal;
+
+    }
+
+
+    .search-toolbar {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .search-sort {
+
+        width: 100%;
+
+    }
+
+
+    .profile-result-active {
+
+        display: none;
+
+    }
+
+}
