@@ -14,6 +14,7 @@ async function renderProfile() {
 
     if (!session) {
         hidePageLoader();
+        window.location.replace("access-denied.html");
         return;
     }
 
